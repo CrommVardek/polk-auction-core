@@ -1,0 +1,18 @@
+version: "3.8"
+services: 
+    polkadot-node: 
+        image: parity/polkadot:v0.9.1
+        volumes: 
+            - polkadot-node:/var/lib/polkadot/node
+        container_name: Polkadot_Node
+        command: '--name "CrommVardekNode" --chain polkadot --unsafe-ws-external --rpc-cors=all'
+    sidecar:
+        image: parity/substrate-api-sidecar:latest
+        ports:
+            - "8080:8080"
+        environment:
+            SAS_SUBSTRATE_WS_URL: ws://polkadot-node:9944
+
+volumes:
+  polkadot-node:
+    external: true    
