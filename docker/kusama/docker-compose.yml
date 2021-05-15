@@ -1,0 +1,19 @@
+version: "3.8"
+services: 
+    kusama-node: 
+        image: parity/polkadot:v0.9.1
+        volumes: 
+            - kusama-node:/var/lib/kusama/node
+        container_name: Kusama_Node
+        command: '--name "CrommVardekNode" --chain kusama --unsafe-ws-external --rpc-cors=all'
+    sidecar:
+        image: parity/substrate-api-sidecar:latest
+        container_name: Kusama_sidecar
+        ports:
+            - "8081:8081"
+        environment:
+            SAS_SUBSTRATE_WS_URL: ws://kusama-node:9944
+
+volumes:
+  kusama-node:
+    external: true    
