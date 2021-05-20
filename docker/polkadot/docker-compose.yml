@@ -1,11 +1,11 @@
 version: "3.8"
 services: 
     polkadot-node: 
-        image: parity/polkadot:v0.9.1
+        image: parity/polkadot:latest
         volumes: 
-            - polkadot-node:/var/lib/polkadot/node
+            - polkadot-node:/polkadot
         container_name: Polkadot_Node
-        command: '--name "CrommVardekNode" --chain polkadot --unsafe-ws-external --rpc-cors=all'
+        command: '--name "CrommVardekNode" --chain polkadot --unsafe-ws-external --rpc-cors=all --wasm-execution Compiled'
     sidecar:
         image: parity/substrate-api-sidecar:latest
         ports:

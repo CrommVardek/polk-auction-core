@@ -1,11 +1,13 @@
 version: "3.8"
 services: 
     kusama-node: 
-        image: parity/polkadot:v0.9.1
+        image: parity/polkadot:latest
         volumes: 
-            - kusama-node:/var/lib/kusama/node
+            - kusama-node:/polkadot
         container_name: Kusama_Node
-        command: '--name "CrommVardekNode" --chain kusama --unsafe-ws-external --rpc-cors=all'
+        command: '--name "CrommVardekNode" --chain kusama --unsafe-ws-external --rpc-cors=all --wasm-execution Compiled'
+        ports:
+            - "30333:30333"
     sidecar:
         image: parity/substrate-api-sidecar:latest
         container_name: Kusama_sidecar
