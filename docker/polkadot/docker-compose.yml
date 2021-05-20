@@ -6,6 +6,8 @@ services:
             - polkadot-node:/polkadot
         container_name: Polkadot_Node
         command: '--name "CrommVardekNode" --chain polkadot --unsafe-ws-external --rpc-cors=all --wasm-execution Compiled'
+        ports:
+            - "30333:30333"
     sidecar:
         image: parity/substrate-api-sidecar:latest
         ports:
