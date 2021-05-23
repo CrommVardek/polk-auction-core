@@ -56,6 +56,11 @@
         </dependency>
         <dependency>
             <groupId>io.ktor</groupId>
+            <artifactId>ktor-serialization</artifactId>
+            <version>${ktor_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.ktor</groupId>
             <artifactId>ktor-server-core</artifactId>
             <version>${ktor_version}</version>
         </dependency>
@@ -64,6 +69,11 @@
             <artifactId>ktor-server-tests</artifactId>
             <version>${ktor_version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-compiler</artifactId>
+            <version>1.4.32</version>
         </dependency>
     </dependencies>
     <build>
