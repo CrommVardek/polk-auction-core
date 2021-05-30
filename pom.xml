@@ -91,6 +91,11 @@
             <artifactId>ktor-client-jackson</artifactId>
             <version>${ktor_version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-core-jvm</artifactId>
+            <version>1.4.3</version>
+        </dependency>
     </dependencies>
     <build>
         <sourceDirectory>${project.basedir}/src/main</sourceDirectory>
