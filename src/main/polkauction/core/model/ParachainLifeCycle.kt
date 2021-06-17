@@ -1,5 +1,8 @@
-package vardek.polkauction.core.model
+package polkauction.core.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 enum class ParachainLifeCycle {
     ONBOARDING,
     PARATHREAD,

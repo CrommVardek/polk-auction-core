@@ -1,4 +1,4 @@
-package vardek.polkauction.core.model
+package polkauction.core.model
 
 enum class AuctionPhase {
     OPENING,

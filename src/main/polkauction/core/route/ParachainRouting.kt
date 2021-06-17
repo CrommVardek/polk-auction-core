@@ -1,11 +1,12 @@
-package vardek.polkauction.core.route
+package polkauction.core.route
 
 import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import vardek.polkauction.core.service.ParachainService
-import vardek.polkauction.core.service.sidecar.SidecarClient
+import polkauction.core.model.Parachain
+import polkauction.core.service.ParachainService
+import polkauction.core.service.sidecar.SidecarClient
 
 fun Route.parachainRouting() {
     route("/parachain") {
@@ -17,7 +18,10 @@ fun Route.parachainRouting() {
             )
             val sidecarClient = SidecarClient(chain)
             val parachainService = ParachainService(sidecarClient)
-            call.respond(parachainService.GetAllCurrentParachains())
+
+            val parachains = parachainService.GetAllCurrentParachains()
+
+            call.respond(parachains)
         }
     }
 }

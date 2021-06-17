@@ -1,7 +1,7 @@
-package vardek.polkauction.core.service
+package polkauction.core.service
 
-import vardek.polkauction.core.model.Auction
-import vardek.polkauction.core.service.sidecar.ISidecarClient
+import polkauction.core.model.Auction
+import polkauction.core.service.sidecar.ISidecarClient
 
 class AuctionService(private val sidecarClient: ISidecarClient): IAuctionService {
     override suspend fun GetCurrentAuction(): Auction {

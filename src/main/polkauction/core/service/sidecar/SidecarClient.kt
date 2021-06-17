@@ -1,14 +1,15 @@
-package vardek.polkauction.core.service.sidecar
+package polkauction.core.service.sidecar
 
 import com.fasterxml.jackson.datatype.guava.GuavaModule
+import com.fasterxml.jackson.module.kotlin.kotlinModule
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
-import vardek.polkauction.core.exception.NoSuchChainException
-import vardek.polkauction.core.model.Auction
-import vardek.polkauction.core.model.Parachain
+import polkauction.core.exception.NoSuchChainException
+import polkauction.core.model.Auction
+import polkauction.core.model.dto.sidecar.ParasDto
 import java.io.FileNotFoundException
 import java.util.*
 
@@ -47,6 +48,7 @@ class SidecarClient(private val chain: String) : ISidecarClient {
         install(JsonFeature) {
             serializer = JacksonSerializer() {
                 registerModule(GuavaModule())
+                registerModule(kotlinModule())
             }
         }
         install(Logging){
@@ -55,7 +57,7 @@ class SidecarClient(private val chain: String) : ISidecarClient {
         }
     }
 
-    override suspend fun GetParas(): List<Parachain> {
+    override suspend fun GetParas(): ParasDto {
         return client.get(baseUrl+PARACHAIN_PATH)
     }
 

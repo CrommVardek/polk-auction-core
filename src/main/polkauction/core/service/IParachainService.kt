@@ -1,6 +1,6 @@
-package vardek.polkauction.core.service
+package polkauction.core.service
 
-import vardek.polkauction.core.model.Parachain
+import polkauction.core.model.Parachain
 
 interface IParachainService {
 

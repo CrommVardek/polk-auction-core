@@ -1,13 +1,9 @@
-package vardek.polkauction.core
+package polkauction.core
 
 import io.ktor.application.*
-import io.ktor.client.*
-import io.ktor.client.features.logging.*
 import io.ktor.features.*
-import io.ktor.http.HttpHeaders
-import io.ktor.http.HttpMethod
-import io.ktor.serialization.*
-import vardek.polkauction.core.route.registerParachainRoutes
+import io.ktor.jackson.*
+import polkauction.core.route.registerParachainRoutes
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -30,7 +26,7 @@ fun Application.module(testing: Boolean = false) {
     }
 
     install(ContentNegotiation) {
-        json()
+        jackson()
     }
 
     registerParachainRoutes()

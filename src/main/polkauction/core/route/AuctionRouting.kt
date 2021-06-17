@@ -1,11 +1,11 @@
-package vardek.polkauction.core.route
+package polkauction.core.route
 
 import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import vardek.polkauction.core.service.AuctionService
-import vardek.polkauction.core.service.sidecar.SidecarClient
+import polkauction.core.service.AuctionService
+import polkauction.core.service.sidecar.SidecarClient
 
 fun Route.auctionRouting() {
     route("/auction") {
