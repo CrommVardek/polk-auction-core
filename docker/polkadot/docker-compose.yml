@@ -7,11 +7,11 @@ services:
         container_name: Polkadot_Node
         command: '--name "CrommVardekNode" --chain polkadot --unsafe-ws-external --rpc-cors=all --wasm-execution Compiled'
         ports:
-            - "30333:30333"
+            - "127.0.0.1:30333:30333"
     sidecar:
         image: parity/substrate-api-sidecar:latest
         ports:
-            - "8080:8080"
+            - "127.0.0.1:8080:8080"
         environment:
             SAS_SUBSTRATE_WS_URL: ws://polkadot-node:9944
 

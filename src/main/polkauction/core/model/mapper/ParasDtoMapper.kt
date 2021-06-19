@@ -8,7 +8,7 @@ import polkauction.core.model.valueOrDefault
 import polkauction.core.utils.camelToUpperSnakeCase
 
 fun ParaDto.toParachain() = Parachain(
-    paraId = "$paraId",
+    paraId = "$paraId".toLong(),
     parachainLifeCycle =  ParachainLifeCycle.valueOf(paraLifecycle.camelToUpperSnakeCase()),
     onboardingAs = valueOrDefault(OnboardingType.NOT_APPLICABLE) { OnboardingType.valueOf(onboardingAs.toUpperCase()) }
 )

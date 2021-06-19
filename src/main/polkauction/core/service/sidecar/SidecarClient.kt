@@ -10,6 +10,7 @@ import io.ktor.client.request.*
 import polkauction.core.exception.NoSuchChainException
 import polkauction.core.model.Auction
 import polkauction.core.model.dto.sidecar.ParasDto
+import polkauction.core.model.dto.sidecar.ParasLeaseInfoDto
 import java.io.FileNotFoundException
 import java.util.*
 
@@ -18,7 +19,8 @@ class SidecarClient(private val chain: String) : ISidecarClient {
 
     private val ACCEPTED_CHAINS = listOf("Kusama", "Polkadot")
 
-    private val PARACHAIN_PATH = "/experimental/paras"
+    private val PARACHAIN_PATH = "/experimental/paras/"
+    private val PARACHAIN_LEASE_PATH_SUFFIX = "/lease-info"
     private val AUCTION_PATH = "/experimental/paras/auctions/current"
 
     private lateinit var baseUrl: String
@@ -59,6 +61,10 @@ class SidecarClient(private val chain: String) : ISidecarClient {
 
     override suspend fun GetParas(): ParasDto {
         return client.get(baseUrl+PARACHAIN_PATH)
+    }
+
+    override suspend fun GetParaLeaseInfo(paraId : Number): ParasLeaseInfoDto {
+        return client.get(baseUrl+PARACHAIN_PATH+paraId+PARACHAIN_LEASE_PATH_SUFFIX)
     }
 
     override suspend fun GetAuction(): Auction {
