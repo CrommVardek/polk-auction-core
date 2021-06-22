@@ -8,9 +8,9 @@ import polkauction.core.service.sidecar.ISidecarClient
 class ParachainService(private val sidecarClient: ISidecarClient): IParachainService {
 
     override suspend fun GetAllCurrentParachains(): List<Parachain> {
-        val parachains =  sidecarClient.GetParas().paras.map { it.toParachain() }
+        val parachains =  sidecarClient.getParas().paras.map { it.toParachain() }
 
-        parachains.forEach { p -> sidecarClient.GetParaLeaseInfo(p.paraId).leases?.forEach { p.currentLeases.add(it.toLease()) }   }
+        parachains.forEach { p -> sidecarClient.getParaLeaseInfo(p.paraId).leases?.forEach { p.currentLeases.add(it.toLease()) }   }
 
         return parachains;
     }

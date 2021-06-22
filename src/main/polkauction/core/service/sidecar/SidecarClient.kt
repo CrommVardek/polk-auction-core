@@ -59,15 +59,15 @@ class SidecarClient(private val chain: String) : ISidecarClient {
         }
     }
 
-    override suspend fun GetParas(): ParasDto {
+    override suspend fun getParas(): ParasDto {
         return client.get(baseUrl+PARACHAIN_PATH)
     }
 
-    override suspend fun GetParaLeaseInfo(paraId : Number): ParasLeaseInfoDto {
+    override suspend fun getParaLeaseInfo(paraId : Number): ParasLeaseInfoDto {
         return client.get(baseUrl+PARACHAIN_PATH+paraId+PARACHAIN_LEASE_PATH_SUFFIX)
     }
 
-    override suspend fun GetAuction(): Auction {
+    override suspend fun getAuction(): Auction {
         return client.get(baseUrl+AUCTION_PATH)
     }
 

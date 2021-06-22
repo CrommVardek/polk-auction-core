@@ -6,9 +6,9 @@ import polkauction.core.model.dto.sidecar.ParasLeaseInfoDto
 
 interface ISidecarClient {
 
-    suspend fun GetParas(): ParasDto
+    suspend fun getParas(): ParasDto
 
-    suspend fun GetParaLeaseInfo(paraId: Number): ParasLeaseInfoDto
+    suspend fun getParaLeaseInfo(paraId: Number): ParasLeaseInfoDto
 
-    suspend fun GetAuction(): Auction
+    suspend fun getAuction(): Auction
 }
