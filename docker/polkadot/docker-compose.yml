@@ -3,13 +3,14 @@ services:
     polkadot-node: 
         image: parity/polkadot:latest
         volumes: 
-            - polkadot-node:/polkadot
+            - polkadot-node:/data
         container_name: Polkadot_Node
-        command: '--name "CrommVardekNode" --chain polkadot --unsafe-ws-external --rpc-cors=all --wasm-execution Compiled'
+        command: '--name "CrommVardekNode" --chain polkadot --unsafe-ws-external --base-path /data/polkadot --rpc-cors=all --wasm-execution Compiled'
         ports:
             - "127.0.0.1:30333:30333"
     sidecar:
         image: parity/substrate-api-sidecar:latest
+        container_name: Polkadot_sidecar
         ports:
             - "127.0.0.1:8080:8080"
         environment:
