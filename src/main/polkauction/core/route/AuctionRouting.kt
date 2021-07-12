@@ -9,7 +9,7 @@ import polkauction.core.service.sidecar.SidecarClient
 
 fun Route.auctionRouting() {
     route("/auction") {
-        get("chain") {
+        get("{chain}") {
             //TODO IoC
             val chain = call.parameters["chain"] ?: return@get call.respondText(
                 "Missing or malformed chain",

@@ -5,8 +5,11 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import polkauction.core.model.OnboardingType
 import polkauction.core.model.ParachainLifeCycle
+import polkauction.core.model.dto.sidecar.BidDto
 import polkauction.core.model.dto.sidecar.LeaseDto
 import polkauction.core.model.dto.sidecar.ParaDto
+import polkauction.core.model.dto.sidecar.WinningDataDto
+import kotlin.test.assertNull
 
 
 class SidecarDtoMapperTest {
@@ -59,6 +62,17 @@ class SidecarDtoMapperTest {
         val leaseDto = LeaseDto("1-20", "JCkD7cRTpfkQmk5v6XvWvR1JPTvrouPXSGmQqtWPcJQKFzx", "oops")
 
         assertThrows(NumberFormatException::class.java) { leaseDto.toLease() }
+    }
+
+    @Test
+    fun validWinningDataDtoShouldMapToWinningInformationModel(){
+        val winningDataDto = WinningDataDto("descr.", null, listOf("13", "14", "15", "16", "17", "18", "19", "20"))
+
+        val winningInformationModel = winningDataDto.toWinningInformation()
+
+        assertEquals(winningDataDto.description, winningInformationModel.description)
+        winningDataDto.leaseSet.forEach{ assert(winningInformationModel.leases.contains(it)) }
+        assertNull(winningInformationModel.bid)
     }
 
 }

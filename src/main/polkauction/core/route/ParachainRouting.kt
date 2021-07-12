@@ -41,7 +41,7 @@ fun Route.parachainRouting() {
                     status = HttpStatusCode.NotFound
                 )
 
-            call.respond(parachain!!)
+            call.respond(parachain)
         }
     }
 }
