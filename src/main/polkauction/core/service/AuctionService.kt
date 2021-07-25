@@ -5,7 +5,7 @@ import polkauction.core.model.mapper.toAuction
 import polkauction.core.service.sidecar.ISidecarClient
 
 class AuctionService(private val sidecarClient: ISidecarClient): IAuctionService {
-    override suspend fun GetCurrentAuction(): Auction {
+    override suspend fun getCurrentAuction(): Auction {
         return sidecarClient.getAuction().toAuction()
     }
 }

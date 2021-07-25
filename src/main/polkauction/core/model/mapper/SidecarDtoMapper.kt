@@ -17,12 +17,12 @@ fun LeaseDto.toLease() = Lease(
 )
 
 fun AuctionDto.toAuction() = Auction(
-    beginEnd = beginEnd,
-    finishEnd = finishEnd,
-    phase = valueOrDefault(AuctionPhase.NO_ONGOING_AUCTION) { AuctionPhase.valueOf(phase.camelToUpperSnakeCase()) },
+    beginEnd = beginEnd ?: "",
+    finishEnd = finishEnd ?: "",
+    phase = valueOrDefault(AuctionPhase.NO_ONGOING_AUCTION) { AuctionPhase.valueOf(phase?.camelToUpperSnakeCase() ?: "") },
     auctionIndex = auctionIndex.toInt(),
-    leasePeriods = leasePeriods.map{it.toInt()},
-    currentWinning = winning.map{it.toWinningInformation()},
+    leasePeriods = leasePeriods?.map{it.toInt()} ?: listOf(),
+    currentWinning = winning?.map{it.toWinningInformation()} ?: listOf(),
 )
 
 fun WinningDataDto.toWinningInformation() = WinningInformation(
@@ -35,4 +35,29 @@ fun BidDto.toBid() = Bid(
     accountId = accountId,
     paraId = paraId.toLong(),
     amount = amount.toDouble(),
+)
+
+fun VerifierDto.toVerifier() = Verifier(
+    sr25519 = sr25519
+)
+
+fun FundInfoDto.toFundInfo() = FundInfo(
+    depositor = depositor,
+    verifier = verifier?.toVerifier(),
+    deposit = deposit.toDouble(),
+    raised = raised.toDouble(),
+    end = end.toLong(),
+    cap = cap.toDouble(),
+    firstPeriod = firstPeriod,
+    lastPeriod = lastPeriod,
+    trieIndex = trieIndex,
+)
+
+fun FundDto.toFund() = Fund(
+    paraId = paraId.toInt(),
+    fundInfo = fundInfo.toFundInfo()
+)
+
+fun ParasCrowdloansDto.toCrowdloan() = Crowdloan(
+    funds = funds.map { it.toFund() }
 )
