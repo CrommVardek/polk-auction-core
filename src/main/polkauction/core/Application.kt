@@ -3,6 +3,8 @@ package polkauction.core
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.jackson.*
+import org.koin.ktor.ext.Koin
+import org.koin.logger.slf4jLogger
 import polkauction.core.route.registerAuctionRoutes
 import polkauction.core.route.registerCrowdloanRoutes
 import polkauction.core.route.registerParachainRoutes
@@ -29,6 +31,11 @@ fun Application.module(testing: Boolean = false) {
 
     install(ContentNegotiation) {
         jackson()
+    }
+
+    install(Koin){
+        slf4jLogger()
+        modules()
     }
 
     registerParachainRoutes()

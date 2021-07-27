@@ -4,10 +4,10 @@ import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import polkauction.core.service.AuctionService
 import polkauction.core.service.CrowdloanService
 import polkauction.core.service.sidecar.SidecarClient
 
+//TODO Inject crowdloan service
 fun Route.crowdloanRouting() {
     route("/crowdloan") {
         get("{chain}") {
