@@ -1,9 +1,13 @@
 package polkauction.core.configuration
 
 import org.koin.dsl.module
-import polkauction.core.service.CrowdloanService
-import polkauction.core.service.ICrowdloanService
+import polkauction.core.service.*
+import polkauction.core.service.sidecar.ISidecarClient
+import polkauction.core.service.sidecar.SidecarClient
 
 val polkAuctionCoreModule = module(createdAtStart = true) {
-    single { CrowdloanService(get()) }
+    // Client
+    single<ISidecarClient> { (chain: String) -> SidecarClient(chain) }
+    // Services
+    single<IAuctionService> { (sidecarClient: ISidecarClient) -> AuctionService(sidecarClient) }
 }

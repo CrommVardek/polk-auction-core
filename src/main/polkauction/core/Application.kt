@@ -5,6 +5,7 @@ import io.ktor.features.*
 import io.ktor.jackson.*
 import org.koin.ktor.ext.Koin
 import org.koin.logger.slf4jLogger
+import polkauction.core.configuration.polkAuctionCoreModule
 import polkauction.core.route.registerAuctionRoutes
 import polkauction.core.route.registerCrowdloanRoutes
 import polkauction.core.route.registerParachainRoutes
@@ -35,7 +36,7 @@ fun Application.module(testing: Boolean = false) {
 
     install(Koin){
         slf4jLogger()
-        modules()
+        modules(polkAuctionCoreModule)
     }
 
     registerParachainRoutes()

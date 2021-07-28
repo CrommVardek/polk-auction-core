@@ -2,6 +2,18 @@
 
 ## Introduction
 
+### What is PolkAuction Core ?
+PolkAuction core is an HTTP API providing a set of endpoints providing data from Polkadot and Kusama relay-chains. Those data are focused on comprehensive parachain, crowdloan and auction information for any app, user, client to use.
+The data provided by the API are both from on-chain and off-chain.
+
+## Requirements
+
+### To be installed
+ - Docker (version 19.03+)
+ - Java (version 14+ recommended)
+ - Kotlin (1.4+)
+ - Maven (3.6+)
+
 ## Run nodes and sidecar API
 
 For Polkadot :
