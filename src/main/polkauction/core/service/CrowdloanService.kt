@@ -2,11 +2,12 @@ package polkauction.core.service
 
 import polkauction.core.model.Crowdloan
 import polkauction.core.model.mapper.toCrowdloan
-import polkauction.core.service.sidecar.ISidecarClient
+import polkauction.core.service.sidecar.getSidecarClient
 
-class CrowdloanService(private val sidecarClient: ISidecarClient): ICrowdloanService {
-    override suspend fun getCurrentCrowdloan(): Crowdloan
+class CrowdloanService: ICrowdloanService {
+    override suspend fun getCurrentCrowdloan(chain: String): Crowdloan
     {
+        val sidecarClient = getSidecarClient(chain)
         return sidecarClient.getCrowdloan().toCrowdloan()
     }
 }

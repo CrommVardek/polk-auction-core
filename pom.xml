@@ -101,11 +101,6 @@
             <artifactId>koin-ktor</artifactId>
             <version>${koin_version}</version>
         </dependency>
-        <dependency>
-            <groupId>io.insert-koin</groupId>
-            <artifactId>koin-logger-slf4j</artifactId>
-            <version>${koin_version}</version>
-        </dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>

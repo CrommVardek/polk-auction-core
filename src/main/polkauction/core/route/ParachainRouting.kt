@@ -4,26 +4,29 @@ import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import org.koin.ktor.ext.inject
+import polkauction.core.service.IAuctionService
+import polkauction.core.service.IParachainService
 import polkauction.core.service.ParachainService
 import polkauction.core.service.sidecar.SidecarClient
 
 fun Route.parachainRouting() {
     route("/parachain") {
         get("{chain}") {
-            //TODO IoC
+
             val chain = call.parameters["chain"] ?: return@get call.respondText(
                 "Missing or malformed chain",
                 status = HttpStatusCode.BadRequest
             )
-            val sidecarClient = SidecarClient(chain)
-            val parachainService = ParachainService(sidecarClient)
 
-            val parachains = parachainService.getAllCurrentParachains()
+            val parachainService: IParachainService by this@route.inject()
+
+            val parachains = parachainService.getAllCurrentParachains(chain)
 
             call.respond(parachains)
         }
         get("{chain}/{id}") {
-            //TODO IoC
+
             val chain = call.parameters["chain"] ?: return@get call.respondText(
                 "Missing or malformed chain",
                 status = HttpStatusCode.BadRequest
@@ -33,9 +36,8 @@ fun Route.parachainRouting() {
                 status = HttpStatusCode.BadRequest
             )
 
-            val sidecarClient = SidecarClient(chain)
-            val parachainService = ParachainService(sidecarClient)
-            val parachain = parachainService.getParachain(id)
+            val parachainService: IParachainService by this@route.inject()
+            val parachain = parachainService.getParachain(chain, id)
                 ?: return@get call.respondText(
                     "No parachain found with id $id on chain $chain",
                     status = HttpStatusCode.NotFound
