@@ -13,6 +13,7 @@
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin_version>1.4.32</kotlin_version>
         <jackson_version>2.12.3</jackson_version>
+        <exposed_version>0.32.1</exposed_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
         <main.class>io.ktor.server.netty.EngineMain</main.class>
@@ -100,6 +101,32 @@
             <groupId>io.insert-koin</groupId>
             <artifactId>koin-ktor</artifactId>
             <version>${koin_version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.26</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.exposed</groupId>
+            <artifactId>exposed-core</artifactId>
+            <version>${exposed_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.exposed</groupId>
+            <artifactId>exposed-jdbc</artifactId>
+            <version>${exposed_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.exposed</groupId>
+            <artifactId>exposed-dao</artifactId>
+            <version>${exposed_version}</version>
         </dependency>
 
         <dependency>

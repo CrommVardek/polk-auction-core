@@ -4,6 +4,7 @@ import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.jackson.*
 import org.koin.ktor.ext.Koin
+import polkauction.core.configuration.initDB
 import polkauction.core.configuration.polkAuctionCoreModule
 import polkauction.core.route.registerAuctionRoutes
 import polkauction.core.route.registerCrowdloanRoutes
@@ -37,10 +38,10 @@ fun Application.module(testing: Boolean = false) {
         modules(polkAuctionCoreModule)
     }
 
+    initDB()
+
     registerParachainRoutes()
-
     registerAuctionRoutes()
-
     registerCrowdloanRoutes()
 
 }
