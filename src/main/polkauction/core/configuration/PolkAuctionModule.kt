@@ -8,4 +8,5 @@ val polkAuctionCoreModule = module(createdAtStart = true) {
     single<IAuctionService> { AuctionService() }
     single<ICrowdloanService> { CrowdloanService() }
     single<IParachainService> { ParachainService() }
+    single<IRuntimeService> { RuntimeService() }
 }

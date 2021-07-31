@@ -61,3 +61,14 @@ fun FundDto.toFund() = Fund(
 fun ParasCrowdloansDto.toCrowdloan() = Crowdloan(
     funds = funds.map { it.toFund() }
 )
+
+fun RuntimeSpecificationPropertiesDto.toRuntimeSpecificationProperties() = RuntimeSpecificationProperties(
+    tokenDecimal = tokenDecimals.firstOrNull()?.toInt() ?: 1,
+    tokenSymbol = tokenSymbol.firstOrNull() ?: ""
+)
+
+fun RuntimeSpecificationDto.toRuntimeSpecification() = RuntimeSpecification(
+    name = specName,
+    version = specVersion,
+    properties = properties.toRuntimeSpecificationProperties()
+)

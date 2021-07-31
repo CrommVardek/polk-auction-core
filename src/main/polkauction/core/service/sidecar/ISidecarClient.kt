@@ -1,9 +1,6 @@
 package polkauction.core.service.sidecar
 
-import polkauction.core.model.dto.sidecar.AuctionDto
-import polkauction.core.model.dto.sidecar.ParasCrowdloansDto
-import polkauction.core.model.dto.sidecar.ParasDto
-import polkauction.core.model.dto.sidecar.ParasLeaseInfoDto
+import polkauction.core.model.dto.sidecar.*
 
 interface ISidecarClient {
 
@@ -14,4 +11,6 @@ interface ISidecarClient {
     suspend fun getAuction(): AuctionDto
 
     suspend fun getCrowdloan(): ParasCrowdloansDto
+
+    suspend fun getRuntimeSpecification(): RuntimeSpecificationDto
 }

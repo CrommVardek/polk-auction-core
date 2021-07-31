@@ -8,10 +8,7 @@ import io.ktor.client.features.json.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import polkauction.core.exception.NoSuchChainException
-import polkauction.core.model.dto.sidecar.AuctionDto
-import polkauction.core.model.dto.sidecar.ParasCrowdloansDto
-import polkauction.core.model.dto.sidecar.ParasDto
-import polkauction.core.model.dto.sidecar.ParasLeaseInfoDto
+import polkauction.core.model.dto.sidecar.*
 import java.io.FileNotFoundException
 import java.util.*
 
@@ -24,6 +21,7 @@ class SidecarClient(private val chain: String) : ISidecarClient {
     private val PARACHAIN_LEASE_PATH_SUFFIX = "/lease-info"
     private val AUCTION_PATH = "/experimental/paras/auctions/current"
     private val CROWDLOAN_PATH = "/experimental/paras/crowdloans"
+    private val RUNTIME_SPEC_PATH = "/runtime/spec"
 
     private lateinit var baseUrl: String
 
@@ -75,6 +73,10 @@ class SidecarClient(private val chain: String) : ISidecarClient {
 
     override suspend fun getCrowdloan(): ParasCrowdloansDto {
         return client.get(baseUrl+CROWDLOAN_PATH)
+    }
+
+    override suspend fun getRuntimeSpecification(): RuntimeSpecificationDto {
+        return client.get(baseUrl+RUNTIME_SPEC_PATH)
     }
 
 }
