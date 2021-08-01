@@ -1,5 +1,9 @@
 # TODO
 
+## DB
+
+- Initial load - once schema is more stable
+
 ## Design
 
 ## Misc

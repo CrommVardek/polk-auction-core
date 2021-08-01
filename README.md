@@ -1,10 +1,17 @@
-# PolkAuctionCore
+# PolkAuction Core
 
 ## Introduction
 
 ### What is PolkAuction Core ?
 PolkAuction core is an HTTP API providing a set of endpoints providing data from Polkadot and Kusama relay-chains. Those data are focused on comprehensive parachain, crowdloan and auction information for any app, user, client to use.
 The data provided by the API are both from on-chain and off-chain.
+
+### Technical stack
+
+- Kotlin
+- Ktor
+- Koin
+- Exposed
 
 ## Requirements
 
@@ -16,7 +23,7 @@ The data provided by the API are both from on-chain and off-chain.
 
 ## Run nodes and sidecar API
 
-For Polkadot :
+### Polkadot :
 
  - Create the volume  if it does not exists already :
 
@@ -26,7 +33,7 @@ For Polkadot :
 
 `docker-compose -f "docker\polkadot\docker-compose.yml" up -d --build`
 
-For Kusama:
+### Kusama:
 
  - Create the volume  if it does not exists already :
 
@@ -35,3 +42,7 @@ For Kusama:
  - Update and run the containers
 
 `docker-compose -f "docker\kusama\docker-compose.yml" up -d --build`
+
+## Run Database
+
+`docker-compose -f "docker\database\docker-compose.yml" up -d --build`
