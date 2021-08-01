@@ -1,12 +1,17 @@
 package polkauction.core.service
 
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 import polkauction.core.model.Parachain
 import polkauction.core.model.mapper.toLease
 import polkauction.core.model.mapper.toParachain
+import polkauction.core.repository.IParachainRepository
 import polkauction.core.service.sidecar.ISidecarClient
 import polkauction.core.service.sidecar.getSidecarClient
 
-class ParachainService: IParachainService {
+class ParachainService: IParachainService, KoinComponent {
+
+    val parachainRepository: IParachainRepository by inject()
 
     override suspend fun getAllCurrentParachains(chain: String): List<Parachain> {
         val sidecarClient = getSidecarClient(chain)

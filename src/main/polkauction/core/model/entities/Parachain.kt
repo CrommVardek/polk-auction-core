@@ -6,21 +6,30 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
 object Parachains : IntIdTable() {
+    val parachainId = integer("parachainId" ).uniqueIndex()
     val parachainName = varchar("ChainName", 255)
-    val relayChain = reference("relayChain", RelayChains)
+    val relayChain = reference("RelayChain", RelayChains)
+    val website = varchar("Website", 255)
+
+    init {
+        index(true, parachainId, relayChain)
+    }
 }
 
 class ParachainEntity(id: EntityID<Int>) : IntEntity(id) {
-    companion object : IntEntityClass<RelayChainEntity>(RelayChains)
+    companion object : IntEntityClass<ParachainEntity>(Parachains)
 
+    var parachainId by Parachains.parachainId
     var parachainName by Parachains.parachainName
     var relayChain by RelayChainEntity referencedOn Parachains.relayChain
+    var website by Parachains.website
 
-    fun toParachain() = Parachain(id.value, parachainName, relayChain.toRelayChain())
+    fun toParachain() = Parachain(parachainId, parachainName, relayChain.toRelayChain(), website)
 }
 
 data class Parachain(
-    val id: Int,
+    val parachainId: Int,
     val parachainName: String,
-    val relayChain: RelayChain
+    val relayChain: RelayChain,
+    val website: String
 )

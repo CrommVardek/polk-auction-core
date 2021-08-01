@@ -7,6 +7,7 @@ import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.slf4j.LoggerFactory
+import polkauction.core.model.entities.Parachains
 import polkauction.core.model.entities.RelayChains
 
 const val HIKARI_CONFIG_KEY = "ktor.hikariconfig"
@@ -17,11 +18,17 @@ fun Application.initDB() {
     val dataSource = HikariDataSource(dbConfig)
     Database.connect(dataSource)
     createTables()
+    initialLoad()
     LoggerFactory.getLogger(Application::class.simpleName).info("Initialized Database")
 }
 
 private fun createTables() = transaction {
     SchemaUtils.create(
-        RelayChains
+        RelayChains,
+        Parachains
     )
+}
+
+private fun initialLoad() = transaction {
+    //TODO
 }

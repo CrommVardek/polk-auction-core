@@ -6,7 +6,7 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
 object RelayChains : IntIdTable() {
-    val chainName = varchar("ChainName", 255)
+    val chainName = varchar("ChainName", 255).uniqueIndex()
 }
 
 class RelayChainEntity(id: EntityID<Int>) : IntEntity(id) {
