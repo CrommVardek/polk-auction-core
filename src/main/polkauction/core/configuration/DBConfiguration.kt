@@ -5,7 +5,6 @@ import com.zaxxer.hikari.HikariDataSource
 import io.ktor.application.*
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
-import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.slf4j.LoggerFactory
 import polkauction.core.model.EcoSystemConstants.KUSAMA_CHAIN_NAME
@@ -22,19 +21,23 @@ fun Application.initDB() {
     val dbConfig = HikariConfig(configPath)
     val dataSource = HikariDataSource(dbConfig)
     Database.connect(dataSource)
-    createTables()
+    reCreateTables()
     initialLoad()
     LoggerFactory.getLogger(Application::class.simpleName).info("Initialized Database")
 }
 
-private fun createTables() = transaction {
+private fun reCreateTables() = transaction {
+    SchemaUtils.drop(
+        RelayChains,
+        Parachains
+    )
     SchemaUtils.create(
         RelayChains,
         Parachains
     )
 }
 
-private fun initialLoad() = {
+private fun initialLoad() = transaction {
     insertRelayChains()
     insertParachains()
 }

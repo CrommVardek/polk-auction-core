@@ -7,9 +7,8 @@ data class Parachain(val paraId: Number, val parachainLifeCycle: ParachainLifeCy
                      val currentLeases: MutableList<Lease> = mutableListOf()
 )
 
-class ParachainExtended(parachain: Parachain, parachainName: String?, website: String?, polkadotJsExplorerUrl: String?, relayChainName: String?)
-
-//TODO mapper ?
+@Serializable
+data class ParachainExtended(val parachain: Parachain, val parachainName: String?, val website: String?, val polkadotJsExplorerUrl: String?, val relayChainName: String?)
 
 fun Parachain.extends(parachain: polkauction.core.model.entities.Parachain?) =
     ParachainExtended(parachain = this, parachain?.parachainName, parachain?.website, parachain?.polkadotJsExplorerUrl, parachain?.relayChain?.chainName)

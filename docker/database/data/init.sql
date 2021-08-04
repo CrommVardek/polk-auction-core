@@ -2,35 +2,8 @@ CREATE DATABASE IF NOT EXISTS POLKAUCTION;
 
 USE POLKAUCTION;
 
-DROP TABLE IF EXISTS RelayChain;
+DROP TABLE IF EXISTS RelayChains;
 
-DROP TABLE IF EXISTS Parachain;
-
-CREATE TABLE RelayChains (
-    Id INT PRIMARY KEY AUTO_INCREMENT,
-    ChainName VARCHAR(250) NOT NULL,
-    CONSTRAINT U_CHAIN_NAME UNIQUE (ChainName)
-);
-
-CREATE TABLE Parachains (
-    Id INT PRIMARY KEY AUTO_INCREMENT,
-    RelayChainId INT NOT NULL,
-    ParachainId INT NOT NULL,
-    ParachainName VARCHAR(250) NOT NULL,
-    Website VARCHAR(500) NOT NULL,
-    FOREIGN KEY (RelayChainId)
-        REFERENCES RelayChains (Id)
-        ON DELETE CASCADE,
-    CONSTRAINT U_PARA_RELAY UNIQUE (RelayChainId, ParachainId)
-);
-
-COMMIT;
-
-INSERT INTO RelayChains
-    (Id, ChainName)
-VALUES
-    (1, 'Polkadot'),
-    (2, 'Kusama')
-;
+DROP TABLE IF EXISTS Parachains;
 
 COMMIT;
