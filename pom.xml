@@ -7,6 +7,7 @@
     <name>polk-auction.core</name>
     <description>polk-auction.core</description>
     <properties>
+        <mockk-version>1.12.0</mockk-version>
         <logback_version>1.2.1</logback_version>
         <koin_version>3.1.2</koin_version>
         <ktor_version>1.5.4</ktor_version>
@@ -140,6 +141,7 @@
             <version>${jackson_version}</version>
         </dependency>
 
+        <!-- Test dependencies -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -162,6 +164,12 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test</artifactId>
             <version>${kotlin_version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.mockk</groupId>
+            <artifactId>mockk</artifactId>
+            <version>${mockk-version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

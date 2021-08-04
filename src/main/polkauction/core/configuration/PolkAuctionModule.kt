@@ -9,7 +9,7 @@ import polkauction.core.service.*
 
 val polkAuctionCoreModule = module(createdAtStart = true) {
     // Services
-    single<IAuctionService> { AuctionService() }
+    single<IAuctionService> { AuctionService(get()) }
     single<ICrowdloanService> { CrowdloanService() }
     single<IParachainService> { ParachainService(get()) }
     single<IRuntimeService> { RuntimeService() }
