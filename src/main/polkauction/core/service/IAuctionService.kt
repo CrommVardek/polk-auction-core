@@ -1,7 +1,7 @@
 package polkauction.core.service
 
-import polkauction.core.model.Auction
+import polkauction.core.model.AuctionExtended
 
 interface IAuctionService {
-    suspend fun getCurrentAuction(chain : String): Auction
+    suspend fun getCurrentAuction(chain : String): AuctionExtended
 }
