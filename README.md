@@ -4,7 +4,7 @@
 
 ### What is PolkAuction Core ?
 PolkAuction core is an HTTP API providing a set of endpoints providing data from Polkadot and Kusama relay-chains. Those data are focused on comprehensive parachain, crowdloan and auction information for any app, user, client to use.
-The data provided by the API are both from on-chain and off-chain.
+The data provided by the API are both from on-chain and off-chain. 
 
 ### Technical stack
 
@@ -21,11 +21,19 @@ The data provided by the API are both from on-chain and off-chain.
  - Kotlin (1.4+)
  - Maven (3.6+)
 
-## Run nodes and sidecar API
+## Contributions, issues and PR
 
-### Polkadot :
+We are open to contributions, ideas, issues, etc. Feel free to open a PR or an issue.
 
- - Create the volume  if it does not exists already :
+For both the issue and the PR, a context is necessary.
+
+## Run
+
+In order to run Polk-auction-core, a few things need to be running before:
+
+### Polkadot Node and sidecar API :
+
+ - Create the volume  if it does not exist already :
 
 `docker volume create polkadot-node`
 
@@ -33,9 +41,9 @@ The data provided by the API are both from on-chain and off-chain.
 
 `docker-compose -f "docker\polkadot\docker-compose.yml" up -d --build`
 
-### Kusama:
+### Kusama Node and sidecar API :
 
- - Create the volume  if it does not exists already :
+ - Create the volume  if it does not exist already :
 
 `docker volume create kusama-node`
 
@@ -43,6 +51,16 @@ The data provided by the API are both from on-chain and off-chain.
 
 `docker-compose -f "docker\kusama\docker-compose.yml" up -d --build`
 
-## Run Database
+### Database
 
 `docker-compose -f "docker\database\docker-compose.yml" up -d --build`
+
+## Build
+
+### Package locally
+
+`mvn clean install`
+
+### Generate a docker image
+
+`docker build -t polk-auction-core .`
