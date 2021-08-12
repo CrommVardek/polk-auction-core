@@ -9,6 +9,7 @@ import polkauction.core.configuration.polkAuctionCoreModule
 import polkauction.core.route.registerAuctionRoutes
 import polkauction.core.route.registerCrowdloanRoutes
 import polkauction.core.route.registerParachainRoutes
+import polkauction.core.route.registerRuntimeRoutes
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -43,6 +44,7 @@ fun Application.module(testing: Boolean = false) {
     registerParachainRoutes()
     registerAuctionRoutes()
     registerCrowdloanRoutes()
+    registerRuntimeRoutes()
 
 }
 

@@ -12,7 +12,7 @@ class CrowdloanService(
 ) : ICrowdloanService {
     override suspend fun getCurrentCrowdloan(chain: String): CrowdloanExtended {
         val sidecarClient = sidecarClientFactory.getSidecarClient(chain)
-        val parachainsEntities = parachainRepository.getAllFor(chain)
+        val parachainsEntities = parachainRepository.getAllFor(chain.toLowerCase().capitalize())
         return sidecarClient.getCrowdloan().toCrowdloan().extends(parachainsEntities)
     }
 }

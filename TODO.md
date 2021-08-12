@@ -1,8 +1,10 @@
 # TODO
 
-## DB
+## Build
 
-- Initial load - once schema is more stable
+ - Dockerfile : fix issue when connecting to DB
+
+## DB
 
 ## Design
 

@@ -31,7 +31,7 @@ fun Route.parachainRouting() {
                 "Missing or malformed chain",
                 status = HttpStatusCode.BadRequest
             )
-            val id = call.parameters["id"]?.toLongOrNull() ?: return@get call.respondText(
+            val id = call.parameters["id"]?.toIntOrNull() ?: return@get call.respondText(
                 "Missing or malformed id - only numbers allowed",
                 status = HttpStatusCode.BadRequest
             )

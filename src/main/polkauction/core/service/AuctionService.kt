@@ -12,7 +12,7 @@ class AuctionService(
 ) : IAuctionService {
 
     override suspend fun getCurrentAuction(chain: String): AuctionExtended {
-        val registeredParachains = parachainRepository.getAllFor(chain)
+        val registeredParachains = parachainRepository.getAllFor(chain.toLowerCase().capitalize())
         val sidecarClient = sidecarClientFactory.getSidecarClient(chain);
         return sidecarClient.getAuction().toAuction().extends(registeredParachains)
     }

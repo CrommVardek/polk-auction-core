@@ -64,3 +64,7 @@ In order to run Polk-auction-core, a few things need to be running before:
 ### Generate a docker image
 
 `docker build -t polk-auction-core .`
+
+### Run the image
+
+`docker run --rm -it -p "127.0.1.1:8080:8080" polk-auction-core`
