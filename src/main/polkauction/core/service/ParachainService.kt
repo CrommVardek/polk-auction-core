@@ -29,7 +29,7 @@ class ParachainService(
         val sidecarClient = sidecarClientFactory.getSidecarClient(chain.toLowerCase().capitalize())
         val parachains = sidecarClient.getParas().paras.map { it.toParachain() }
 
-        val parachain = parachains.singleOrNull { it.paraId == id }
+        val parachain = parachains.singleOrNull { it.paraId.toInt() == id }
 
         if (parachain == null)
             return parachain
