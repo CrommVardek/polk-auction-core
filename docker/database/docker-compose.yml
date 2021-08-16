@@ -4,9 +4,10 @@ services:
 
   polkauction-off-chain-db:
     image: mysql:latest
-    command: --default-authentication-plugin=mysql_native_password
     volumes:
       - ./data:/docker-entrypoint-initdb.d
+    container_name: polkauction-db
+    command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: polkauction
@@ -14,3 +15,9 @@ services:
       - SYS_NICE
     ports:
       - "127.0.33.1:3308:3306"
+    networks:
+      - database
+
+networks:
+  database:
+    external: true

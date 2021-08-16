@@ -8,13 +8,21 @@ services:
         command: '--name "CrommVardekNode" --chain kusama --unsafe-ws-external --rpc-cors=all --base-path /data/polkadot --wasm-execution Compiled'
         ports:
             - "127.0.1.1:30333:30333"
+        networks:
+            - kusama
     sidecar:
         image: parity/substrate-api-sidecar:latest
         container_name: Kusama_sidecar
         ports:
             - "127.0.1.1:8080:8080"
+        networks:
+            - kusama
         environment:
             SAS_SUBSTRATE_WS_URL: wss://kusama-rpc.polkadot.io
+
+networks:
+    kusama:
+        external: true
 
 volumes:
   kusama-node:

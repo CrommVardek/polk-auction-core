@@ -3,7 +3,7 @@
 ## Introduction
 
 ### What is PolkAuction Core ?
-PolkAuction core is an HTTP API providing a set of endpoints providing data from Polkadot and Kusama relay-chains. Those data are focused on comprehensive parachain, crowdloan and auction information for any app, user, client to use.
+PolkAuction core is an HTTP API exposing a set of endpoints providing data from Polkadot and Kusama relay-chains. Those data are focused on comprehensive parachain, crowdloan and auction information for any app, user, client to use.
 The data provided by the API are both from on-chain and off-chain. 
 
 ### Technical stack
@@ -12,10 +12,12 @@ The data provided by the API are both from on-chain and off-chain.
 - Ktor
 - Koin
 - Exposed
+- MySQL
 
 ## Requirements
 
 ### To be installed
+
  - Docker (version 19.03+)
  - Java (version 14+ recommended)
  - Kotlin (1.4+)
@@ -32,6 +34,9 @@ For both the issue and the PR, a context is necessary.
 In order to run Polk-auction-core, a few things need to be running before:
 
 ### Polkadot Node and sidecar API :
+
+Note: nodes that are running from a new volume will need quite some time to update the blockchain until its current head block. 
+If you wish to use the sidecar API with an up-to-date node, change the `SAS_SUBSTRATE_WS_URL` parameter in the docker-compose files ([kusama docker-compose](./docker/kusama/docker-compose.yml), [polkadot docker-compose](./docker/polkadot/docker-compose.yml)) to another node endpoint.
 
  - Create the volume  if it does not exist already :
 
@@ -57,14 +62,17 @@ In order to run Polk-auction-core, a few things need to be running before:
 
 ## Build
 
-### Package locally
-
-`mvn clean install`
-
-### Generate a docker image
+### With Docker
+#### Build and Generate a docker image
 
 `docker build -t polk-auction-core .`
 
-### Run the image
+#### Run the image
 
 `docker run --rm -it -p "127.0.1.1:8080:8080" polk-auction-core`
+
+### Locally
+
+`mvn clean install`
+
+## Tests

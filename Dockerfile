@@ -10,6 +10,7 @@ RUN mvn package
 # Part 2: use the JAR file used in the first part and copy it across ready to RUN
 FROM openjdk:14-jdk
 EXPOSE 8080:8080
+EXPOSE 3308:3308
 WORKDIR /root/
 ## COPY packaged JAR file and rename as app.jar
 ## → this relies on your MAVEN package command building a jar
