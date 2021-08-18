@@ -26,4 +26,4 @@ networks:
 
 volumes:
   kusama-node:
-    external: true    
+    external: true
