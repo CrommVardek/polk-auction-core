@@ -2,9 +2,6 @@
 
 ## Build
 
- - Dockerfile : fix issue when connecting to DB
- - mvn install should run the tests
-
 ## DB
 
 ## Design

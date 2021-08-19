@@ -90,3 +90,7 @@ If you wish to use the sidecar API with an up-to-date node, change the `SAS_SUBS
 `mvn clean install`
 
 ## Tests
+
+To run the test, run the following command :
+
+`mvn test`
