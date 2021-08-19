@@ -33,7 +33,8 @@ class SidecarClient(private val chain: String) : ISidecarClient {
 
     private fun getBaseUrlFromProperties() {
         val props = Properties()
-        val propFileName = "chains.properties"
+        val env = System.getenv("POLKAUCTION_ENV")
+        val propFileName = "chains.$env.properties"
 
         val inputStream = javaClass.classLoader.getResourceAsStream(propFileName)
 

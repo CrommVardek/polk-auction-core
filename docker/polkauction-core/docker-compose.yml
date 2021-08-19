@@ -14,6 +14,9 @@ services:
         container_name: polk-auction-core
         ports:
             - "127.0.100.1:8080:8080"
+        environment:
+            POLKAUCTION_ENV: docker
+            POLKAUCTION_HOST: 0.0.0.0
         networks:
             - database
             - polkadot
