@@ -4,10 +4,16 @@ import com.fasterxml.jackson.datatype.guava.GuavaModule
 import com.fasterxml.jackson.module.kotlin.kotlinModule
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
+import io.ktor.client.features.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
 import polkauction.core.exception.NoSuchChainException
+import polkauction.core.exception.SidecarGetException
+import polkauction.core.model.EcoSystemConstants.KUSAMA_CHAIN_NAME
+import polkauction.core.model.EcoSystemConstants.POLKADOT_CHAIN_NAME
 import polkauction.core.model.dto.sidecar.*
 import java.io.FileNotFoundException
 import java.util.*
@@ -15,7 +21,7 @@ import java.util.*
 
 class SidecarClient(private val chain: String) : ISidecarClient {
 
-    private val ACCEPTED_CHAINS = listOf("Kusama", "Polkadot")
+    private val ACCEPTED_CHAINS = listOf(POLKADOT_CHAIN_NAME, KUSAMA_CHAIN_NAME)
 
     private val PARACHAIN_PATH = "/experimental/paras/"
     private val PARACHAIN_LEASE_PATH_SUFFIX = "/lease-info"
@@ -57,6 +63,16 @@ class SidecarClient(private val chain: String) : ISidecarClient {
         install(Logging){
             logger = Logger.DEFAULT
             level = LogLevel.ALL
+        }
+        HttpResponseValidator {
+            handleResponseException { exception ->
+                val clientException = exception as? ClientRequestException ?: return@handleResponseException
+                val exceptionResponse = exception.response
+                if (exceptionResponse.status.value >= HttpStatusCode.InternalServerError.value) {
+                    val exceptionResponseText = exceptionResponse.readText()
+                    throw SidecarGetException(exceptionResponseText)
+                }
+            }
         }
     }
 

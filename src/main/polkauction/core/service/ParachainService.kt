@@ -1,5 +1,6 @@
 package polkauction.core.service
 
+import polkauction.core.exception.SidecarGetException
 import polkauction.core.model.Parachain
 import polkauction.core.model.ParachainExtended
 import polkauction.core.model.extends
@@ -17,11 +18,16 @@ class ParachainService(
     override suspend fun getAllCurrentParachains(chain: String): List<ParachainExtended> {
         val registeredParachains = parachainRepository.getAllFor(chain.toLowerCase().capitalize())
         val sidecarClient = sidecarClientFactory.getSidecarClient(chain)
-        val parachains = sidecarClient.getParas().paras.map { it.toParachain() }
 
-        parachains.forEach { loadLeases(sidecarClient, it) }
+        return try {
+            val parachains = sidecarClient.getParas().paras.map { it.toParachain() }
 
-        return parachains.map { it.extends(registeredParachains.find { rp -> rp.parachainId == it.paraId.toInt() }) };
+            parachains.forEach { loadLeases(sidecarClient, it) }
+
+            parachains.map { it.extends(registeredParachains.find { rp -> rp.parachainId == it.paraId.toInt() }) };
+        } catch (e: SidecarGetException) {
+            listOf()
+        }
     }
 
     override suspend fun getParachain(chain: String, id: Int): ParachainExtended? {
@@ -29,14 +35,19 @@ class ParachainService(
         val sidecarClient = sidecarClientFactory.getSidecarClient(chain.toLowerCase().capitalize())
         val parachains = sidecarClient.getParas().paras.map { it.toParachain() }
 
-        val parachain = parachains.singleOrNull { it.paraId.toInt() == id }
+        return try {
+            val parachain = parachains.singleOrNull { it.paraId.toInt() == id }
 
-        if (parachain == null)
-            return parachain
+            if (parachain == null)
+                return parachain
 
-        loadLeases(sidecarClient, parachain)
+            loadLeases(sidecarClient, parachain)
 
-        return parachain.extends(registeredParachain);
+            parachain.extends(registeredParachain);
+        } catch (e: SidecarGetException) {
+            null
+        }
+
     }
 
     private suspend fun loadLeases(sidecarClient: ISidecarClient, parachain: Parachain) {

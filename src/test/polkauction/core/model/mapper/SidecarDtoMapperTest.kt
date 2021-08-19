@@ -112,7 +112,7 @@ class SidecarDtoMapperTest {
     }
 
     @Test
-    fun validAuctionDtoWithNoPahseShouldMapToAuctionModelWithNoOngoingAuctionPhase(){
+    fun validAuctionDtoWithNoPhaseShouldMapToAuctionModelWithNoOngoingAuctionPhase(){
         val auctionDto = AuctionDto(BlockIdentifiersDto("0x78e4d78c927191c36113dcb3669b241eecdbd9dc1258802fd7f67a3de3ba4ea4", "8424000"), null, null, null, "5", null, null)
 
         val auctionModel = auctionDto.toAuction()
