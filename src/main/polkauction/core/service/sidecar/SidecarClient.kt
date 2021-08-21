@@ -55,7 +55,7 @@ class SidecarClient(private val chain: String) : ISidecarClient {
 
     private val client = HttpClient(CIO) {
         install(JsonFeature) {
-            serializer = JacksonSerializer() {
+            serializer = JacksonSerializer {
                 registerModule(GuavaModule())
                 registerModule(kotlinModule())
             }

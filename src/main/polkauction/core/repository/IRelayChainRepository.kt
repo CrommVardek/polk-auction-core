@@ -1,4 +1,3 @@
 package polkauction.core.repository
 
-interface IRelayChainRepository {
-}
+interface IRelayChainRepository

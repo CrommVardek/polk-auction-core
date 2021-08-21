@@ -1,4 +1,4 @@
-package polkauction.core.service;
+package polkauction.core.service
 
 import polkauction.core.model.CrowdloanExtended
 

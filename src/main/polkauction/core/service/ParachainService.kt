@@ -24,7 +24,7 @@ class ParachainService(
 
             parachains.forEach { loadLeases(sidecarClient, it) }
 
-            parachains.map { it.extends(registeredParachains.find { rp -> rp.parachainId == it.paraId.toInt() }) };
+            parachains.map { it.extends(registeredParachains.find { rp -> rp.parachainId == it.paraId.toInt() }) }
         } catch (e: SidecarGetException) {
             listOf()
         }
@@ -43,7 +43,7 @@ class ParachainService(
 
             loadLeases(sidecarClient, parachain)
 
-            parachain.extends(registeredParachain);
+            parachain.extends(registeredParachain)
         } catch (e: SidecarGetException) {
             null
         }
