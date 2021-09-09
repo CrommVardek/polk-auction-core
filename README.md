@@ -1,6 +1,6 @@
 [![Apache 2.0 license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](./LICENSE)
 
-<img align="right" width="420" src="https://user-images.githubusercontent.com/14314577/131904843-f05912fc-3bcc-4f52-99d4-92555689a621.jpg">
+<img align="right" width="420" src="https://raw.githubusercontent.com/w3f/General-Grants-Program/master/src/badge_black.svg">
 
 # PolkAuction Core
 
@@ -101,7 +101,7 @@ To run the test, run the following command :
 
 ## Usage
 
-Once everything is running fine, you can access the API using the following url : http://localhost:8080 (can be changed in the application configuration or using an environment variable)
+Once everything is running fine, you can access the API using the following url : http://127.0.100.1:8080 (if running on docker) or http://localhost:8080 (can be changed in the application configuration or using an environment variable)
 
 ### Available endpoints
 
