@@ -95,4 +95,25 @@ private fun insertParachains() = transaction {
         website = "https://bifrost.finance/"
         polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fbifrost-rpc.liebi.com%2Fws#/explorer"
     }
+    ParachainEntity.new {
+        parachainId = 2084
+        parachainName = "Calamari"
+        relayChain = kusamaRelayChain
+        website = "https://www.calamari.network/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fsmoothie.calamari.systems%2F#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2086
+        parachainName = "KILT Protocol"
+        relayChain = kusamaRelayChain
+        website = "https://www.kilt.io/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fspiritnet.api.onfinality.io%2Fpublic-ws#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2090
+        parachainName = "Basilisk"
+        relayChain = kusamaRelayChain
+        website = "https://bsx.fi/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fbasilisk.api.onfinality.io%2Fpublic-ws#/explorer"
+    }
 }
