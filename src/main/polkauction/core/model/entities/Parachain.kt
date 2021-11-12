@@ -6,7 +6,7 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
 object Parachains : IntIdTable() {
-    val parachainId = integer("ParachainId" ).uniqueIndex()
+    val parachainId = integer("ParachainId" )
     val parachainName = varchar("ChainName", 255)
     val relayChain = reference("RelayChain", RelayChains)
     val website = varchar("Website", 255).nullable()
