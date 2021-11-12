@@ -41,7 +41,7 @@ fun VerifierDto.toVerifier() = Verifier(
     sr25519 = sr25519
 )
 
-fun FundInfoDto.toFundInfo() = FundInfo(
+fun FundInfoDto.toFundInfo(blockHeight: String) = FundInfo(
     depositor = depositor,
     verifier = verifier?.toVerifier(),
     deposit = deposit.toDouble(),
@@ -51,15 +51,16 @@ fun FundInfoDto.toFundInfo() = FundInfo(
     firstPeriod = firstPeriod,
     lastPeriod = lastPeriod,
     trieIndex = trieIndex,
+    state = if (end.toLong() > blockHeight.toLong()) FundState.CURRENT else FundState.ENDED
 )
 
-fun FundDto.toFund() = Fund(
+fun FundDto.toFund(blockHeight: String) = Fund(
     paraId = paraId.toInt(),
-    fundInfo = fundInfo.toFundInfo()
+    fundInfo = fundInfo.toFundInfo(blockHeight)
 )
 
 fun ParasCrowdloansDto.toCrowdloan() = Crowdloan(
-    funds = funds.map { it.toFund() }
+    funds = funds.map { it.toFund(at.height) }
 )
 
 fun RuntimeSpecificationPropertiesDto.toRuntimeSpecificationProperties() = RuntimeSpecificationProperties(
