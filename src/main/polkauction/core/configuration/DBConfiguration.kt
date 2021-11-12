@@ -222,4 +222,73 @@ private fun insertParachains() = transaction {
         polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fapi-kin.interlay.io%2Fparachain#/explorer"
     }
 
+    val polkadotRelayChain = RelayChainEntity.find { RelayChains.chainName eq POLKADOT_CHAIN_NAME }.single()
+
+    ParachainEntity.new {
+        parachainId = 1000
+        parachainName = "Statemint"
+        relayChain = polkadotRelayChain
+        website = "https://wiki.polkadot.network/docs/build-integrate-assets"
+    }
+    ParachainEntity.new {
+        parachainId = 2000
+        parachainName = "Acala"
+        relayChain = polkadotRelayChain
+        website = "https://acala.network/"
+    }
+    ParachainEntity.new {
+        parachainId = 2002
+        parachainName = "Clover"
+        relayChain = polkadotRelayChain
+        website = "https://clover.finance/"
+    }
+    ParachainEntity.new {
+        parachainId = 2003
+        parachainName = "Darwinia"
+        relayChain = polkadotRelayChain
+        website = "https://darwinia.network/"
+    }
+    ParachainEntity.new {
+        parachainId = 2004
+        parachainName = "Moonbeam"
+        relayChain = polkadotRelayChain
+        website = "https://moonbeam.network/"
+    }
+    ParachainEntity.new {
+        parachainId = 2006
+        parachainName = "Astar"
+        relayChain = polkadotRelayChain
+        website = "https://astar.network/"
+    }
+    ParachainEntity.new {
+        parachainId = 2012
+        parachainName = "Parallel Finance"
+        relayChain = polkadotRelayChain
+        website = "https://parallel.fi/"
+    }
+    ParachainEntity.new {
+        parachainId = 2013
+        parachainName = "Litentry"
+        relayChain = polkadotRelayChain
+        website = "https://www.litentry.com/"
+    }
+    ParachainEntity.new {
+        parachainId = 2015
+        parachainName = "Manta"
+        relayChain = polkadotRelayChain
+        website = "https://manta.network/"
+    }
+    ParachainEntity.new {
+        parachainId = 2017
+        parachainName = "SubGame"
+        relayChain = polkadotRelayChain
+        website = "https://www.subgame.org/"
+    }
+    ParachainEntity.new {
+        parachainId = 2018
+        parachainName = "SubDAO"
+        relayChain = polkadotRelayChain
+        website = "https://www.subdao.network/"
+    }
+
 }
