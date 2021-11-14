@@ -18,6 +18,7 @@ object LeasePeriods : IntIdTable() {
         index(true, period, relayChain)
     }
 }
+
 class LeasePeriodEntity(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<LeasePeriodEntity>(LeasePeriods)
 

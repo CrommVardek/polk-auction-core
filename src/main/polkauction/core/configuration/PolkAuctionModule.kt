@@ -1,10 +1,7 @@
 package polkauction.core.configuration
 
 import org.koin.dsl.module
-import polkauction.core.repository.IParachainRepository
-import polkauction.core.repository.IRelayChainRepository
-import polkauction.core.repository.ParachainRepository
-import polkauction.core.repository.RelayChainRepository
+import polkauction.core.repository.*
 import polkauction.core.service.*
 import polkauction.core.service.sidecar.ISidecarClientFactory
 import polkauction.core.service.sidecar.SidecarClientFactory
@@ -21,4 +18,5 @@ val polkAuctionCoreModule = module(createdAtStart = true) {
     //Repositories
     single<IRelayChainRepository> { RelayChainRepository() }
     single<IParachainRepository> { ParachainRepository() }
+    single<ILeasePeriodRepository> { LeasePeriodRepository() }
 }

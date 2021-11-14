@@ -9,10 +9,8 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import org.slf4j.LoggerFactory
 import polkauction.core.model.EcoSystemConstants.KUSAMA_CHAIN_NAME
 import polkauction.core.model.EcoSystemConstants.POLKADOT_CHAIN_NAME
-import polkauction.core.model.entities.ParachainEntity
-import polkauction.core.model.entities.Parachains
-import polkauction.core.model.entities.RelayChainEntity
-import polkauction.core.model.entities.RelayChains
+import polkauction.core.model.entities.*
+import java.time.LocalDateTime
 
 const val HIKARI_CONFIG_KEY = "ktor.hikariconfig"
 
@@ -29,17 +27,20 @@ fun Application.initDB() {
 private fun reCreateTables() = transaction {
     SchemaUtils.drop(
         RelayChains,
-        Parachains
+        Parachains,
+        LeasePeriods
     )
     SchemaUtils.create(
         RelayChains,
-        Parachains
+        Parachains,
+        LeasePeriods
     )
 }
 
 private fun initialLoad() = transaction {
     insertRelayChains()
     insertParachains()
+    insertLeasePeriods()
 }
 
 private fun insertRelayChains() = transaction {
@@ -291,4 +292,15 @@ private fun insertParachains() = transaction {
         website = "https://www.subdao.network/"
     }
 
+}
+
+private fun insertLeasePeriods() {
+    val kusamaRelayChain = RelayChainEntity.find { RelayChains.chainName eq KUSAMA_CHAIN_NAME }.single()
+    LeasePeriodEntity.new {
+        period = 17
+        relayChain = kusamaRelayChain
+        blockStart = 9806873
+        estimatedDateTimeBegin = LocalDateTime.of(2021,10,25,9,32,54)
+        estimatedDateTimeEnd = estimatedDateTimeBegin.plusDays(42)
+    }
 }
