@@ -8,6 +8,7 @@ import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.slf4j.LoggerFactory
 import polkauction.core.model.EcoSystemConstants.KUSAMA_CHAIN_NAME
+import polkauction.core.model.EcoSystemConstants.KUSAMA_LEASE_PERIOD_DURATION_DAYS
 import polkauction.core.model.EcoSystemConstants.POLKADOT_CHAIN_NAME
 import polkauction.core.model.entities.*
 import java.time.LocalDateTime
@@ -301,6 +302,40 @@ private fun insertLeasePeriods() {
         relayChain = kusamaRelayChain
         blockStart = 9806873
         estimatedDateTimeBegin = LocalDateTime.of(2021,10,25,9,32,54)
-        estimatedDateTimeEnd = estimatedDateTimeBegin.plusDays(42)
+        estimatedDateTimeEnd = getKusamaEstimatedDateTimeEnd()
+    }
+    LeasePeriodEntity.new {
+        period = 18
+        relayChain = kusamaRelayChain
+        blockStart = 10282200
+        estimatedDateTimeBegin = getEstimatedDateTimeBeginFromPreviousPeriod()
+        estimatedDateTimeEnd = getKusamaEstimatedDateTimeEnd()
+    }
+    LeasePeriodEntity.new {
+        period = 19
+        relayChain = kusamaRelayChain
+        blockStart = 10887000
+        estimatedDateTimeBegin = getEstimatedDateTimeBeginFromPreviousPeriod()
+        estimatedDateTimeEnd = getKusamaEstimatedDateTimeEnd()
+    }
+    LeasePeriodEntity.new {
+        period = 20
+        relayChain = kusamaRelayChain
+        blockStart = 11491800
+        estimatedDateTimeBegin = getEstimatedDateTimeBeginFromPreviousPeriod()
+        estimatedDateTimeEnd = getKusamaEstimatedDateTimeEnd()
+    }
+    LeasePeriodEntity.new {
+        period = 21
+        relayChain = kusamaRelayChain
+        blockStart = 12096600
+        estimatedDateTimeBegin = getEstimatedDateTimeBeginFromPreviousPeriod()
+        estimatedDateTimeEnd = getKusamaEstimatedDateTimeEnd()
     }
 }
+
+private fun LeasePeriodEntity.getKusamaEstimatedDateTimeEnd() =
+    estimatedDateTimeBegin.plusDays(KUSAMA_LEASE_PERIOD_DURATION_DAYS)
+
+private fun LeasePeriodEntity.getEstimatedDateTimeBeginFromPreviousPeriod() =
+    LeasePeriodEntity.find { LeasePeriods.period eq period - 1 }.single().estimatedDateTimeEnd.plusSeconds(6)

@@ -11,7 +11,7 @@ val polkAuctionCoreModule = module(createdAtStart = true) {
     single<ISidecarClientFactory> { SidecarClientFactory() }
 
     single<IAuctionService> { AuctionService(get(), get()) }
-    single<ICrowdloanService> { CrowdloanService(get(), get()) }
+    single<ICrowdloanService> { CrowdloanService(get(), get(), get()) }
     single<IParachainService> { ParachainService(get(), get()) }
     single<IRuntimeService> { RuntimeService(get()) }
 

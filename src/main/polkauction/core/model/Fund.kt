@@ -1,5 +1,6 @@
 package polkauction.core.model
 
+import polkauction.core.model.entities.LeasePeriod
 import polkauction.core.model.entities.Parachain
 
 data class Fund(val paraId: Int, val fundInfo: FundInfo)
@@ -9,13 +10,13 @@ data class FundExtended(
     val parachainName: String?,
     val website: String?,
     val polkadotJsExplorerUrl: String?,
-    val fundInfo: FundInfo
+    val fundInfo: FundInfoExtended
 )
 
-fun Fund.extends(parachain: Parachain?) = FundExtended(
+fun Fund.extends(parachain: Parachain?, leasePeriods: List<LeasePeriod>) = FundExtended(
     parachainId = paraId,
     parachainName = parachain?.parachainName,
     website = parachain?.website,
     polkadotJsExplorerUrl = parachain?.polkadotJsExplorerUrl,
-    fundInfo
+    fundInfo.extends(leasePeriods)
 )
