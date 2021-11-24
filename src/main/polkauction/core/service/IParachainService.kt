@@ -1,11 +1,11 @@
 package polkauction.core.service
 
-import polkauction.core.model.ParachainExtended
+import polkauction.core.model.Parachain
 
 interface IParachainService {
 
-    suspend fun getAllCurrentParachains(chain: String): List<ParachainExtended>
+    suspend fun getAllCurrentParachains(chain: String): List<Parachain>
 
-    suspend fun getParachain(chain: String, id: Int): ParachainExtended?
+    suspend fun getParachain(chain: String, id: Int): Parachain?
 
 }

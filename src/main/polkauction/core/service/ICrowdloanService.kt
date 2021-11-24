@@ -1,7 +1,7 @@
 package polkauction.core.service
 
-import polkauction.core.model.CrowdloanExtended
+import polkauction.core.model.Crowdloan
 
 interface ICrowdloanService {
-    suspend fun getCurrentCrowdloan(chain: String): CrowdloanExtended
+    suspend fun getCurrentCrowdloan(chain: String): Crowdloan
 }

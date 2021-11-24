@@ -4,11 +4,6 @@ import polkauction.core.model.entities.LeasePeriod
 import java.time.LocalDateTime
 
 data class FundInfo(
-    val depositor: String, val verifier: Verifier?, val deposit: Double, val raised: Double, val end: Long,
-    val cap: Double, val firstPeriod: String, val lastPeriod: String, val trieIndex: String, val state: FundState
-)
-
-data class FundInfoExtended(
     val depositor: String,
     val verifier: Verifier?,
     val deposit: Double,
@@ -16,14 +11,14 @@ data class FundInfoExtended(
     val end: Long,
     val cap: Double,
     val firstPeriod: String,
-    val firstPeriodStarts: LocalDateTime?,
+    val firstPeriodStarts: LocalDateTime? = null,
     val lastPeriod: String,
-    val lastPeriodStarts: LocalDateTime?,
+    val lastPeriodStarts: LocalDateTime? = null,
     val trieIndex: String,
     val state: FundState
 )
 
-fun FundInfo.extends(leasePeriods: List<LeasePeriod>) = FundInfoExtended(
+fun FundInfo.with(leasePeriods: List<LeasePeriod>) = FundInfo(
     depositor,
     verifier,
     deposit,
