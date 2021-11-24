@@ -23,7 +23,7 @@ class ParachainService(
 
             parachains.forEach { loadLeases(sidecarClient, it) }
 
-            parachains.map { it.with(registeredParachains.find { rp -> rp.parachainId == it.paraId.toInt() }) }
+            parachains.map { it.with(registeredParachains.find { rp -> rp.parachainId == it.parachainId.toInt() }) }
         } catch (e: SidecarGetException) {
             listOf()
         }
@@ -35,7 +35,7 @@ class ParachainService(
         val parachains = sidecarClient.getParas().paras.map { it.toParachain() }
 
         return try {
-            val parachain = parachains.singleOrNull { it.paraId.toInt() == id }
+            val parachain = parachains.singleOrNull { it.parachainId.toInt() == id }
 
             if (parachain == null)
                 return parachain
@@ -50,6 +50,6 @@ class ParachainService(
     }
 
     private suspend fun loadLeases(sidecarClient: ISidecarClient, parachain: Parachain) {
-        sidecarClient.getParaLeaseInfo(parachain.paraId).leases?.forEach { parachain.currentLeases.add(it.toLease()) }
+        sidecarClient.getParaLeaseInfo(parachain.parachainId).leases?.forEach { parachain.currentLeases.add(it.toLease()) }
     }
 }

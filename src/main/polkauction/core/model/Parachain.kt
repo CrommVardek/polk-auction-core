@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Parachain(
-    val paraId: Number,
+    val parachainId: Number,
     val parachainLifeCycle: ParachainLifeCycle,
     val onboardingAs: OnboardingType = OnboardingType.NOT_APPLICABLE,
     val currentLeases: MutableList<Lease> = mutableListOf(),
@@ -16,7 +16,7 @@ data class Parachain(
 
 fun Parachain.with(parachain: polkauction.core.model.entities.Parachain?) =
     Parachain(
-        paraId,
+        parachainId,
         parachainLifeCycle,
         onboardingAs,
         currentLeases,

@@ -20,7 +20,7 @@ class SidecarDtoMapperTest {
 
         assertEquals(OnboardingType.PARACHAIN, parachain.onboardingAs)
         assertEquals(ParachainLifeCycle.ONBOARDING, parachain.parachainLifeCycle)
-        assertEquals(paraDto.paraId.toLong(), parachain.paraId)
+        assertEquals(paraDto.paraId.toLong(), parachain.parachainId)
     }
 
     @Test
