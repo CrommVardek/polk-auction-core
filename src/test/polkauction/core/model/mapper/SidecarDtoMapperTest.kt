@@ -69,7 +69,7 @@ class SidecarDtoMapperTest {
         val bidModel = bidDto.toBid()
 
         assertEquals(bidDto.accountId, bidModel.accountId)
-        assertEquals(bidDto.paraId.toLong(), bidModel.parachainId)
+        assertEquals(bidDto.paraId.toInt(), bidModel.parachainId)
         assertEquals(bidDto.amount.toDouble(), bidModel.amount)
     }
 
