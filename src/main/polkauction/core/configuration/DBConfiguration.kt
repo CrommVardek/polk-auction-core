@@ -223,6 +223,13 @@ private fun insertParachains() = transaction {
         website = "https://kintsugi.interlay.io/"
         polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fapi-kin.interlay.io%2Fparachain#/explorer"
     }
+    ParachainEntity.new {
+        parachainId = 2100
+        parachainName = "Subsocial"
+        relayChain = kusamaRelayChain
+        website = "https://app.subsocial.network/"
+        polkadotJsExplorerUrl = ""
+    }
 
     val polkadotRelayChain = RelayChainEntity.find { RelayChains.chainName eq POLKADOT_CHAIN_NAME }.single()
 

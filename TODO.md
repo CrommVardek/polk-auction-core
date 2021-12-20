@@ -8,6 +8,11 @@
 
 ## Design
 
+## Features
+
+- Use Unix Epoch time as timestamp for leasePeriod starts and end (is starts necessary ?)
+- Use leasePeriod in Parachain and Auction models
+
 ## Misc
 
 - Shift the deposit, raised, etc. values (expressed in planck) to their token decimal values (?)

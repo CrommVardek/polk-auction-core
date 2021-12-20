@@ -23,10 +23,10 @@ class SidecarClient(private val chain: String) : ISidecarClient {
 
     private val ACCEPTED_CHAINS = listOf(POLKADOT_CHAIN_NAME, KUSAMA_CHAIN_NAME)
 
-    private val PARACHAIN_PATH = "/experimental/paras/"
+    private val PARACHAIN_PATH = "/paras/"
     private val PARACHAIN_LEASE_PATH_SUFFIX = "/lease-info"
-    private val AUCTION_PATH = "/experimental/paras/auctions/current"
-    private val CROWDLOAN_PATH = "/experimental/paras/crowdloans"
+    private val AUCTION_PATH = PARACHAIN_PATH + "auctions/current"
+    private val CROWDLOAN_PATH = PARACHAIN_PATH + "crowdloans"
     private val RUNTIME_SPEC_PATH = "/runtime/spec"
 
     private lateinit var baseUrl: String
@@ -66,7 +66,7 @@ class SidecarClient(private val chain: String) : ISidecarClient {
         }
         HttpResponseValidator {
             handleResponseException { exception ->
-                val clientException = exception as? ClientRequestException ?: return@handleResponseException
+                if (exception !is ClientRequestException) return@handleResponseException
                 val exceptionResponse = exception.response
                 if (exceptionResponse.status.value >= HttpStatusCode.InternalServerError.value) {
                     val exceptionResponseText = exceptionResponse.readText()
