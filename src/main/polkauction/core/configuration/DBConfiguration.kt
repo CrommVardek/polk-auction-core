@@ -64,6 +64,13 @@ private fun insertParachains() = transaction {
         polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fkusama-statemine-rpc.paritytech.net#/explorer"
     }
     ParachainEntity.new {
+        parachainId = 1001
+        parachainName = "Encointer"
+        relayChain = kusamaRelayChain
+        website = "https://encointer.org/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fapi.kusama.encointer.org#/explorer"
+    }
+    ParachainEntity.new {
         parachainId = 2000
         parachainName = "Karura"
         relayChain = kusamaRelayChain
@@ -224,11 +231,46 @@ private fun insertParachains() = transaction {
         polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fapi-kin.interlay.io%2Fparachain#/explorer"
     }
     ParachainEntity.new {
+        parachainId = 2094
+        parachainName = "Unorthodox"
+        relayChain = kusamaRelayChain
+        website = "https://standard.tech/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Frpc.kusama.standard.tech#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2095
+        parachainName = "Quartz"
+        relayChain = kusamaRelayChain
+        website = "https://unique.network/quartz/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fus-ws-quartz.unique.network#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2096
+        parachainName = "Bit.Country Pioneer"
+        relayChain = kusamaRelayChain
+        website = "https://bit.country/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fpioneer.api.onfinality.io%2Fpublic-ws#/explorer"
+    }
+    ParachainEntity.new {
         parachainId = 2100
         parachainName = "Subsocial"
         relayChain = kusamaRelayChain
         website = "https://app.subsocial.network/"
-        polkadotJsExplorerUrl = ""
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fpara.subsocial.network"
+    }
+    ParachainEntity.new {
+        parachainId = 2101
+        parachainName = "Zeitgeist"
+        relayChain = kusamaRelayChain
+        website = "https://zeitgeist.pm/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Frpc-0.zeitgeist.pm#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2102
+        parachainName = "Pichiu"
+        relayChain = kusamaRelayChain
+        website = "https://kylin.network/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fkusama.kylin-node.co.uk#/explorer"
     }
 
     val polkadotRelayChain = RelayChainEntity.find { RelayChains.chainName eq POLKADOT_CHAIN_NAME }.single()
@@ -238,66 +280,154 @@ private fun insertParachains() = transaction {
         parachainName = "Statemint"
         relayChain = polkadotRelayChain
         website = "https://wiki.polkadot.network/docs/build-integrate-assets"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fstatemint-rpc.polkadot.io"
     }
     ParachainEntity.new {
         parachainId = 2000
         parachainName = "Acala"
         relayChain = polkadotRelayChain
         website = "https://acala.network/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Facala-rpc-0.aca-api.network#/explorer"
     }
     ParachainEntity.new {
         parachainId = 2002
         parachainName = "Clover"
         relayChain = polkadotRelayChain
         website = "https://clover.finance/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fclover.api.onfinality.io%2Fpublic-ws#/explorer"
     }
     ParachainEntity.new {
         parachainId = 2003
         parachainName = "Darwinia"
         relayChain = polkadotRelayChain
         website = "https://darwinia.network/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fparachain-rpc.darwinia.network#/explorer"
     }
     ParachainEntity.new {
         parachainId = 2004
         parachainName = "Moonbeam"
         relayChain = polkadotRelayChain
         website = "https://moonbeam.network/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fmoonbeam.api.onfinality.io%2Fpublic-ws#/explorer"
     }
     ParachainEntity.new {
         parachainId = 2006
         parachainName = "Astar"
         relayChain = polkadotRelayChain
         website = "https://astar.network/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Frpc.astar.network#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2008
+        parachainName = "Crust"
+        relayChain = polkadotRelayChain
+        website = "https://crust.network/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Frpc.crust.network#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2011
+        parachainName = "Equilibrium"
+        relayChain = polkadotRelayChain
+        website = "https://equilibrium.io/en"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fnode.equilibrium.io#/explorer"
     }
     ParachainEntity.new {
         parachainId = 2012
         parachainName = "Parallel Finance"
         relayChain = polkadotRelayChain
         website = "https://parallel.fi/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fparallel.api.onfinality.io%2Fpublic-ws#/explorer"
     }
     ParachainEntity.new {
         parachainId = 2013
         parachainName = "Litentry"
         relayChain = polkadotRelayChain
         website = "https://www.litentry.com/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fparachain.litentry.io#/explorer"
     }
     ParachainEntity.new {
         parachainId = 2015
         parachainName = "Manta"
         relayChain = polkadotRelayChain
         website = "https://manta.network/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fpectinata.manta.systems#/explorer"
     }
     ParachainEntity.new {
         parachainId = 2017
         parachainName = "SubGame"
         relayChain = polkadotRelayChain
         website = "https://www.subgame.org/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fgamma.subgame.org%2F#/explorer"
     }
     ParachainEntity.new {
         parachainId = 2018
         parachainName = "SubDAO"
         relayChain = polkadotRelayChain
         website = "https://www.subdao.network/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fparachain-rpc.subdao.org#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2019
+        parachainName = "Composable Finance"
+        relayChain = polkadotRelayChain
+        website = "https://www.composable.finance/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Frpc.composable.finance#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2021
+        parachainName = "Efinity"
+        relayChain = polkadotRelayChain
+        website = "https://efinity.io/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Frpc.efinity.io#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2026
+        parachainName = "Nodle"
+        relayChain = polkadotRelayChain
+        website = "https://www.nodle.com/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Frpc.nodle.com#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2027
+        parachainName = "Coinversation"
+        relayChain = polkadotRelayChain
+        website = "https://www.coinversation.io/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Frpc.coinversation.io%2F#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2028
+        parachainName = "Ares Odyssey"
+        relayChain = polkadotRelayChain
+        website = "https://www.aresprotocol.io/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fwss.odyssey.aresprotocol.io#/"
+    }
+    ParachainEntity.new {
+        parachainId = 2031
+        parachainName = "Centrifuge"
+        relayChain = polkadotRelayChain
+        website = "https://centrifuge.io/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Ffullnode.parachain.centrifuge.io#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2032
+        parachainName = "Interlay"
+        relayChain = polkadotRelayChain
+        website = "https://interlay.io/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fapi.interlay.io%2Fparachain#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2034
+        parachainName = ""
+        relayChain = polkadotRelayChain
+        website = ""
+        polkadotJsExplorerUrl = ""
+    }
+    ParachainEntity.new {
+        parachainId = 2035
+        parachainName = "Phala"
+        relayChain = polkadotRelayChain
+        website = "https://phala.network/en/"
+        polkadotJsExplorerUrl = ""
     }
 
 }
