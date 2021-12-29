@@ -5,7 +5,7 @@ services:
         volumes:
             - kusama-node:/data
         container_name: kusama-node
-        command: '--name "CrommVardekNode" --chain kusama --unsafe-ws-external --rpc-cors=all --base-path /data/polkadot --wasm-execution Compiled'
+        command: '--name "CrommVardekNode" --chain kusama --unsafe-ws-external --pruning archive --rpc-cors=all --base-path /data/polkadot --wasm-execution Compiled'
         ports:
             - "127.0.1.1:30333:30333"
         networks:
