@@ -14,7 +14,7 @@ val polkAuctionCoreModule = module(createdAtStart = true) {
     single<ICrowdloanService> { CrowdloanService(get(), get(), get()) }
     single<IParachainService> { ParachainService(get(), get(), get()) }
     single<IRuntimeService> { RuntimeService(get()) }
-    single<ILeasePeriodService> { LeasePeriodService() }
+    single<ILeasePeriodService> { LeasePeriodService(get(), get()) }
 
     //Repositories
     single<IRelayChainRepository> { RelayChainRepository() }

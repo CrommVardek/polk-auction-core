@@ -4,11 +4,14 @@ import com.google.common.collect.ImmutableList
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
+import polkauction.core.model.EcoSystemConstants.EXPECTED_BLOCK_TIME_MS
+import polkauction.core.model.dto.sidecar.BlockDto
 import polkauction.core.model.dto.sidecar.getTimeStamp
 import polkauction.core.model.entities.LeasePeriod
 import polkauction.core.repository.ILeasePeriodRepository
 import polkauction.core.service.sidecar.ISidecarClient
 import polkauction.core.service.sidecar.ISidecarClientFactory
+import kotlin.math.abs
 
 class LeasePeriodService(
     private val leasePeriodRepository: ILeasePeriodRepository,
@@ -20,10 +23,11 @@ class LeasePeriodService(
         val sidecarClient = sidecarClientFactory.getSidecarClient(relayChain)
 
         var leasePeriods = leasePeriodRepository.getAllFor(relayChainCapitalized)
+        val blockHead = sidecarClient.getBlockHead()
         coroutineScope {
             leasePeriods = leasePeriods.map {
                 async {
-                    getLeasePeriodDetails(sidecarClient, it)
+                    getLeasePeriodDetails(sidecarClient, blockHead, it)
                 }
             }.awaitAll()
         }
@@ -33,10 +37,29 @@ class LeasePeriodService(
 
     private suspend fun getLeasePeriodDetails(
         sidecarClient: ISidecarClient,
+        blockHead: BlockDto,
         it: LeasePeriod
     ): LeasePeriod {
-        var blockStart = sidecarClient.getBlockAt(it.blockStart)
-        var blockEnd = sidecarClient.getBlockAt(it.blockEnd)
-        return it.copy(startTimeStamp = blockStart.getTimeStamp(), endTimeStamp = blockEnd.getTimeStamp())
+        var startTimeStamp: Long? = if (it.blockStart <= blockHead.number.toInt()) {
+            var blockStart = sidecarClient.getBlockAt(it.blockStart)
+            blockStart.getTimeStamp()
+        } else {
+            getEstimatedTimeStampFromHead(it.blockStart, blockHead)
+        }
+        var endTimeStamp: Long? = if (it.blockEnd <= blockHead.number.toInt()) {
+            var blockStart = sidecarClient.getBlockAt(it.blockEnd)
+            blockStart.getTimeStamp()
+        } else {
+            getEstimatedTimeStampFromHead(it.blockEnd, blockHead)
+        }
+        return it.copy(startTimeStamp = startTimeStamp, endTimeStamp = endTimeStamp)
+    }
+
+    private fun getEstimatedTimeStampFromHead(
+        blockHeight: Int,
+        blockHead: BlockDto
+    ): Long? {
+        val heightDifference = abs(blockHeight - blockHead.number.toInt())
+        return blockHead.getTimeStamp()?.plus(heightDifference * (EXPECTED_BLOCK_TIME_MS / 1000))
     }
 }

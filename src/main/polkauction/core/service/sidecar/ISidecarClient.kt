@@ -17,4 +17,6 @@ interface ISidecarClient {
     suspend fun getMetadata(): RuntimeMetadataDto
 
     suspend fun getBlockAt(height: Number): BlockDto
+
+    suspend fun getBlockHead(): BlockDto
 }

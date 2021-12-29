@@ -33,6 +33,7 @@ class SidecarClient(private val chain: String) : ISidecarClient {
     private val RUNTIME_SPEC_PATH = RUNTIME_PATH + "/spec"
     private val METADATA_PATH = RUNTIME_PATH + "/metadata"
     private val BLOCK_PATH = "/blocks/"
+    private val BLOCK_HEAD_PATH = BLOCK_PATH + "head"
 
     private lateinit var baseUrl: String
 
@@ -107,6 +108,10 @@ class SidecarClient(private val chain: String) : ISidecarClient {
 
     override suspend fun getBlockAt(height: Number): BlockDto {
         return client.get(baseUrl+BLOCK_PATH+height)
+    }
+
+    override suspend fun getBlockHead(): BlockDto {
+        return client.get(baseUrl+BLOCK_HEAD_PATH)
     }
 
 }
