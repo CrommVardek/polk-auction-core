@@ -8,10 +8,12 @@ import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.slf4j.LoggerFactory
 import polkauction.core.model.EcoSystemConstants.KUSAMA_CHAIN_NAME
-import polkauction.core.model.EcoSystemConstants.KUSAMA_LEASE_PERIOD_DURATION_DAYS
+import polkauction.core.model.EcoSystemConstants.KUSAMA_LEASE_OFFSET
+import polkauction.core.model.EcoSystemConstants.KUSAMA_LEASE_PERIOD
 import polkauction.core.model.EcoSystemConstants.POLKADOT_CHAIN_NAME
+import polkauction.core.model.EcoSystemConstants.POLKADOT_LEASE_OFFSET
+import polkauction.core.model.EcoSystemConstants.POLKADOT_LEASE_PERIOD
 import polkauction.core.model.entities.*
-import java.time.LocalDateTime
 
 const val HIKARI_CONFIG_KEY = "ktor.hikariconfig"
 
@@ -434,45 +436,24 @@ private fun insertParachains() = transaction {
 
 private fun insertLeasePeriods() {
     val kusamaRelayChain = RelayChainEntity.find { RelayChains.chainName eq KUSAMA_CHAIN_NAME }.single()
-    LeasePeriodEntity.new {
-        period = 17
-        relayChain = kusamaRelayChain
-        blockStart = 9806873
-        estimatedDateTimeBegin = LocalDateTime.of(2021,10,25,9,32,54)
-        estimatedDateTimeEnd = getKusamaEstimatedDateTimeEnd()
+
+    for(i in 1..100) {
+        LeasePeriodEntity.new {
+            period = i
+            relayChain = kusamaRelayChain
+            blockStart = (i-1)*KUSAMA_LEASE_PERIOD + KUSAMA_LEASE_OFFSET
+            blockEnd = i*KUSAMA_LEASE_PERIOD + KUSAMA_LEASE_OFFSET
+        }
     }
-    LeasePeriodEntity.new {
-        period = 18
-        relayChain = kusamaRelayChain
-        blockStart = 10282200
-        estimatedDateTimeBegin = getEstimatedDateTimeBeginFromPreviousPeriod()
-        estimatedDateTimeEnd = getKusamaEstimatedDateTimeEnd()
-    }
-    LeasePeriodEntity.new {
-        period = 19
-        relayChain = kusamaRelayChain
-        blockStart = 10887000
-        estimatedDateTimeBegin = getEstimatedDateTimeBeginFromPreviousPeriod()
-        estimatedDateTimeEnd = getKusamaEstimatedDateTimeEnd()
-    }
-    LeasePeriodEntity.new {
-        period = 20
-        relayChain = kusamaRelayChain
-        blockStart = 11491800
-        estimatedDateTimeBegin = getEstimatedDateTimeBeginFromPreviousPeriod()
-        estimatedDateTimeEnd = getKusamaEstimatedDateTimeEnd()
-    }
-    LeasePeriodEntity.new {
-        period = 21
-        relayChain = kusamaRelayChain
-        blockStart = 12096600
-        estimatedDateTimeBegin = getEstimatedDateTimeBeginFromPreviousPeriod()
-        estimatedDateTimeEnd = getKusamaEstimatedDateTimeEnd()
+
+    val polkadotRelayChain = RelayChainEntity.find { RelayChains.chainName eq POLKADOT_CHAIN_NAME }.single()
+
+    for(i in 1..50) {
+        LeasePeriodEntity.new {
+            period = i
+            relayChain = polkadotRelayChain
+            blockStart = (i-1) * POLKADOT_LEASE_PERIOD + POLKADOT_LEASE_OFFSET
+            blockEnd = i*POLKADOT_LEASE_PERIOD + POLKADOT_LEASE_OFFSET
+        }
     }
 }
-
-private fun LeasePeriodEntity.getKusamaEstimatedDateTimeEnd() =
-    estimatedDateTimeBegin.plusDays(KUSAMA_LEASE_PERIOD_DURATION_DAYS)
-
-private fun LeasePeriodEntity.getEstimatedDateTimeBeginFromPreviousPeriod() =
-    LeasePeriodEntity.find { LeasePeriods.period eq period - 1 }.single().estimatedDateTimeEnd.plusSeconds(6)
