@@ -107,7 +107,7 @@ class SidecarDtoMapperTest {
         assertEquals(auctionDto.beginEnd, auctionModel.beginEnd)
         assertEquals(auctionDto.finishEnd, auctionModel.finishEnd)
         assertEquals(auctionDto.auctionIndex.toInt(), auctionModel.auctionIndex)
-        auctionDto.leasePeriods?.forEach {  assert(auctionModel.leasePeriods.contains(it.toInt())) }
+        auctionDto.leasePeriods?.forEach {  assert(auctionModel.leasePeriodIndexes.contains(it.toInt())) }
         assertEquals(AuctionPhase.END_PERIOD, auctionModel.phase)
     }
 

@@ -1,5 +1,6 @@
 package polkauction.core.service.sidecar
 
+import com.fasterxml.jackson.databind.util.JSONPObject
 import com.fasterxml.jackson.datatype.guava.GuavaModule
 import com.fasterxml.jackson.module.kotlin.kotlinModule
 import io.ktor.client.*
@@ -10,6 +11,7 @@ import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import kotlinx.serialization.json.JsonObject
 import polkauction.core.exception.NoSuchChainException
 import polkauction.core.exception.SidecarGetException
 import polkauction.core.model.EcoSystemConstants.KUSAMA_CHAIN_NAME
@@ -27,7 +29,10 @@ class SidecarClient(private val chain: String) : ISidecarClient {
     private val PARACHAIN_LEASE_PATH_SUFFIX = "/lease-info"
     private val AUCTION_PATH = PARACHAIN_PATH + "auctions/current"
     private val CROWDLOAN_PATH = PARACHAIN_PATH + "crowdloans"
-    private val RUNTIME_SPEC_PATH = "/runtime/spec"
+    private val RUNTIME_PATH = "/runtime"
+    private val RUNTIME_SPEC_PATH = RUNTIME_PATH + "/spec"
+    private val METADATA_PATH = RUNTIME_PATH + "/metadata"
+    private val BLOCK_PATH = "/blocks/"
 
     private lateinit var baseUrl: String
 
@@ -94,6 +99,14 @@ class SidecarClient(private val chain: String) : ISidecarClient {
 
     override suspend fun getRuntimeSpecification(): RuntimeSpecificationDto {
         return client.get(baseUrl+RUNTIME_SPEC_PATH)
+    }
+
+    override suspend fun getMetadata(): RuntimeMetadataDto {
+        return client.get(baseUrl+METADATA_PATH)
+    }
+
+    override suspend fun getBlockAt(height: Number): BlockDto {
+        return client.get(baseUrl+BLOCK_PATH+height)
     }
 
 }

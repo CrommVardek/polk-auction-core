@@ -1,6 +1,7 @@
 package polkauction.core.model
 
 import kotlinx.serialization.Serializable
+import polkauction.core.model.entities.LeasePeriod
 
 @Serializable
 data class Parachain(
@@ -14,12 +15,12 @@ data class Parachain(
     val relayChainName: String? = null
 )
 
-fun Parachain.with(parachain: polkauction.core.model.entities.Parachain?) =
+fun Parachain.with(parachain: polkauction.core.model.entities.Parachain?, leasePeriods: List<LeasePeriod>) =
     Parachain(
         parachainId,
         parachainLifeCycle,
         onboardingAs,
-        currentLeases,
+        currentLeases.map { it.with(leasePeriods) }.toMutableList(),
         parachain?.parachainName,
         parachain?.website,
         parachain?.polkadotJsExplorerUrl,

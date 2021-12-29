@@ -13,4 +13,8 @@ interface ISidecarClient {
     suspend fun getCrowdloan(): ParasCrowdloansDto
 
     suspend fun getRuntimeSpecification(): RuntimeSpecificationDto
+
+    suspend fun getMetadata(): RuntimeMetadataDto
+
+    suspend fun getBlockAt(height: Number): BlockDto
 }

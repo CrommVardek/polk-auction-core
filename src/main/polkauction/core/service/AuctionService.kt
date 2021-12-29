@@ -8,7 +8,8 @@ import polkauction.core.service.sidecar.ISidecarClientFactory
 
 class AuctionService(
     private val parachainRepository: IParachainRepository,
-    private val sidecarClientFactory: ISidecarClientFactory
+    private val sidecarClientFactory: ISidecarClientFactory,
+    private val leasePeriodService: ILeasePeriodService,
 ) : IAuctionService {
 
     override suspend fun getCurrentAuction(chain: String): Auction {
@@ -16,6 +17,13 @@ class AuctionService(
         val sidecarClient = sidecarClientFactory.getSidecarClient(chain)
         var auctionRaw = sidecarClient.getAuction()
         auctionRaw.winning = auctionRaw.winning?.filter { it.bid != null }
-        return auctionRaw.toAuction().with(registeredParachains)
+        val leasePeriods = leasePeriodService.getAllFor(chain)
+        //val metadata = sidecarClient.getMetadata()
+        //val slotsPallet = metadata.metadata.v14.pallets.single { it.name == "Slots" }
+        //val leaseOffset = slotsPallet.constants.single { it.name == "leaseOffset"}
+        //val leasePeriod = slotsPallet.constants.single { it.name == "leasePeriod"}
+        return auctionRaw.toAuction().with(registeredParachains, leasePeriods)
     }
+
+
 }

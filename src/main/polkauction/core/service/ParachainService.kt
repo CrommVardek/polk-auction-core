@@ -11,19 +11,26 @@ import polkauction.core.service.sidecar.ISidecarClientFactory
 
 class ParachainService(
     private val parachainRepository: IParachainRepository,
-    private val sidecarClientFactory: ISidecarClientFactory
+    private val sidecarClientFactory: ISidecarClientFactory,
+    private val leasePeriodService: ILeasePeriodService
 ) : IParachainService {
 
     override suspend fun getAllCurrentParachains(chain: String): List<Parachain> {
         val registeredParachains = parachainRepository.getAllFor(chain.toLowerCase().capitalize())
         val sidecarClient = sidecarClientFactory.getSidecarClient(chain)
+        val leasePeriods = leasePeriodService.getAllFor(chain)
 
         return try {
             val parachains = sidecarClient.getParas().paras.map { it.toParachain() }
 
             parachains.forEach { loadLeases(sidecarClient, it) }
 
-            parachains.map { it.with(registeredParachains.find { rp -> rp.parachainId == it.parachainId.toInt() }) }
+            parachains.map {
+                it.with(
+                    registeredParachains.find { rp -> rp.parachainId == it.parachainId.toInt() },
+                    leasePeriods
+                )
+            }
         } catch (e: SidecarGetException) {
             listOf()
         }
@@ -33,6 +40,7 @@ class ParachainService(
         val registeredParachain = parachainRepository.getByIdFor(id, chain.toLowerCase().capitalize())
         val sidecarClient = sidecarClientFactory.getSidecarClient(chain.toLowerCase().capitalize())
         val parachains = sidecarClient.getParas().paras.map { it.toParachain() }
+        val leasePeriods = leasePeriodService.getAllFor(chain)
 
         return try {
             val parachain = parachains.singleOrNull { it.parachainId.toInt() == id }
@@ -42,7 +50,7 @@ class ParachainService(
 
             loadLeases(sidecarClient, parachain)
 
-            parachain.with(registeredParachain)
+            parachain.with(registeredParachain, leasePeriods)
         } catch (e: SidecarGetException) {
             null
         }

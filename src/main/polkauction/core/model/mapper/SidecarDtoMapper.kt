@@ -25,7 +25,7 @@ fun AuctionDto.toAuction() = Auction(
         )
     },
     auctionIndex = auctionIndex.toInt(),
-    leasePeriods = leasePeriods?.map { it.toInt() } ?: listOf(),
+    leasePeriodIndexes = leasePeriods?.map { it.toInt() } ?: listOf(),
     currentWinning = winning?.map { it.toWinningInformation() } ?: listOf(),
 )
 

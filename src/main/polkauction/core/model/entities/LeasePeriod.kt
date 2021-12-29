@@ -4,15 +4,12 @@ import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
-import org.jetbrains.exposed.sql.javatime.datetime
-import java.time.LocalDateTime
 
 object LeasePeriods : IntIdTable() {
     val period = integer("Period")
     val relayChain = reference("RelayChain", RelayChains)
     val blockStart = integer("blockStart")
-    val estimatedDateTimeBegin = datetime("estimatedDateTimeBegin")
-    val estimatedDateTimeEnd = datetime("estimatedDateTimeEnd")
+    val blockEnd = integer("blockEnd")
 
     init {
         index(true, period, relayChain)
@@ -25,16 +22,16 @@ class LeasePeriodEntity(id: EntityID<Int>) : IntEntity(id) {
     var period by LeasePeriods.period
     var relayChain by RelayChainEntity referencedOn LeasePeriods.relayChain
     var blockStart by LeasePeriods.blockStart
-    var estimatedDateTimeBegin by LeasePeriods.estimatedDateTimeBegin
-    var estimatedDateTimeEnd by LeasePeriods.estimatedDateTimeEnd
+    var blockEnd by LeasePeriods.blockEnd
 
-    fun toLeasePeriod() = LeasePeriod(period, relayChain.toRelayChain(), blockStart, estimatedDateTimeBegin, estimatedDateTimeEnd)
+    fun toLeasePeriod() = LeasePeriod(period, relayChain.toRelayChain(), blockStart, blockEnd)
 }
 
 data class LeasePeriod(
     val period: Int,
     val relayChain: RelayChain,
     val blockStart: Int,
-    val estimatedDateTimeBegin: LocalDateTime,
-    val estimatedDateTimeEnd: LocalDateTime,
+    val blockEnd: Int,
+    val startTimeStamp: Long? = null,
+    val endTimeStamp: Long? = null,
 )
