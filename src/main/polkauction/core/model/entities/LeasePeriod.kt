@@ -30,8 +30,8 @@ class LeasePeriodEntity(id: EntityID<Int>) : IntEntity(id) {
 data class LeasePeriod(
     val period: Int,
     val relayChain: RelayChain,
-    val blockStart: Int,
-    val blockEnd: Int,
+    val blockNumberStart: Int,
+    val blockNumberEnd: Int,
     val startTimeStamp: Long? = null,
     val endTimeStamp: Long? = null,
 )

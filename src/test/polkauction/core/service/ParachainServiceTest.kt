@@ -1,5 +1,6 @@
 package polkauction.core.service
 
+import com.google.common.collect.ImmutableList
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
@@ -11,6 +12,7 @@ import polkauction.core.model.dto.sidecar.BlockIdentifiersDto
 import polkauction.core.model.dto.sidecar.ParaDto
 import polkauction.core.model.dto.sidecar.ParasDto
 import polkauction.core.model.dto.sidecar.ParasLeaseInfoDto
+import polkauction.core.model.entities.LeasePeriod
 import polkauction.core.model.entities.Parachain
 import polkauction.core.model.entities.RelayChain
 import polkauction.core.repository.IParachainRepository
@@ -45,13 +47,15 @@ class ParachainServiceTest {
         val registeredParachains = listOf(statemineParachain)
         val parachainRepository = mockk<IParachainRepository>()
         val sidecarClientFactory = mockk<ISidecarClientFactory>()
+        val leasePeriodService = mockk<ILeasePeriodService>()
         val sidecarClient = mockk<ISidecarClient>()
         coEvery { parachainRepository.getAllFor(relayChain) } returns registeredParachains
         every { sidecarClientFactory.getSidecarClient(relayChain) } returns sidecarClient
         coEvery { sidecarClient.getParas() } returns onChainParachains
         coEvery { sidecarClient.getParaLeaseInfo(any()) } returns ParasLeaseInfoDto(at, "Parachain")
+        coEvery { leasePeriodService.getAllFor(relayChain) } returns ImmutableList.of()
 
-        val parachainService = ParachainService(parachainRepository, sidecarClientFactory)
+        val parachainService = ParachainService(parachainRepository, sidecarClientFactory, leasePeriodService)
 
         val result = runBlocking { parachainService.getAllCurrentParachains(relayChain) }
 
@@ -77,13 +81,15 @@ class ParachainServiceTest {
         val registeredParachains = emptyList<Parachain>()
         val parachainRepository = mockk<IParachainRepository>()
         val sidecarClientFactory = mockk<ISidecarClientFactory>()
+        val leasePeriodService = mockk<ILeasePeriodService>()
         val sidecarClient = mockk<ISidecarClient>()
         coEvery { parachainRepository.getAllFor(relayChain) } returns registeredParachains
         every { sidecarClientFactory.getSidecarClient(relayChain) } returns sidecarClient
         coEvery { sidecarClient.getParas() } returns onChainParachains
         coEvery { sidecarClient.getParaLeaseInfo(any()) } returns ParasLeaseInfoDto(at, "Parachain")
+        coEvery { leasePeriodService.getAllFor(relayChain) } returns ImmutableList.of()
 
-        val parachainService = ParachainService(parachainRepository, sidecarClientFactory)
+        val parachainService = ParachainService(parachainRepository, sidecarClientFactory, leasePeriodService)
 
         val result = runBlocking { parachainService.getAllCurrentParachains(relayChain) }
 

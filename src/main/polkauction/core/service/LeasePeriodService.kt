@@ -40,17 +40,17 @@ class LeasePeriodService(
         blockHead: BlockDto,
         it: LeasePeriod
     ): LeasePeriod {
-        var startTimeStamp: Long? = if (it.blockStart <= blockHead.number.toInt()) {
-            var blockStart = sidecarClient.getBlockAt(it.blockStart)
+        var startTimeStamp: Long? = if (it.blockNumberStart <= blockHead.number.toInt()) {
+            var blockStart = sidecarClient.getBlockAt(it.blockNumberStart)
             blockStart.getTimeStamp()
         } else {
-            getEstimatedTimeStampFromHead(it.blockStart, blockHead)
+            getEstimatedTimeStampFromHead(it.blockNumberStart, blockHead)
         }
-        var endTimeStamp: Long? = if (it.blockEnd <= blockHead.number.toInt()) {
-            var blockStart = sidecarClient.getBlockAt(it.blockEnd)
+        var endTimeStamp: Long? = if (it.blockNumberEnd <= blockHead.number.toInt()) {
+            var blockStart = sidecarClient.getBlockAt(it.blockNumberEnd)
             blockStart.getTimeStamp()
         } else {
-            getEstimatedTimeStampFromHead(it.blockEnd, blockHead)
+            getEstimatedTimeStampFromHead(it.blockNumberEnd, blockHead)
         }
         return it.copy(startTimeStamp = startTimeStamp, endTimeStamp = endTimeStamp)
     }
