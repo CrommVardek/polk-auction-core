@@ -70,6 +70,7 @@ class SidecarClient(private val chain: String) : ISidecarClient {
             logger = Logger.DEFAULT
             level = LogLevel.ALL
         }
+        install(HttpTimeout)
         HttpResponseValidator {
             handleResponseException { exception ->
                 if (exception !is ClientRequestException) return@handleResponseException
@@ -107,7 +108,11 @@ class SidecarClient(private val chain: String) : ISidecarClient {
     }
 
     override suspend fun getBlockAt(height: Number): BlockDto {
-        return client.get(baseUrl+BLOCK_PATH+height)
+        return client.get(baseUrl+BLOCK_PATH+height) {
+            timeout {
+                requestTimeoutMillis = HttpTimeout.INFINITE_TIMEOUT_MS
+            }
+        }
     }
 
     override suspend fun getBlockHead(): BlockDto {

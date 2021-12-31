@@ -8,10 +8,6 @@ class LeasePeriodRepository : ILeasePeriodRepository {
         return@transaction getAllForUnfiltered(relayChain)
     }
 
-    override suspend fun getFilteredFor(relayChain: String, filter: (LeasePeriod) -> Boolean): List<LeasePeriod> = transaction {
-        return@transaction getAllForUnfiltered(relayChain).filter(filter)
-    }
-
     private fun getAllForUnfiltered(relayChain: String): List<LeasePeriod> {
         var relayChainEntity: RelayChainEntity = transaction {
             RelayChainEntity.find { RelayChains.chainName eq relayChain }.singleOrNull()

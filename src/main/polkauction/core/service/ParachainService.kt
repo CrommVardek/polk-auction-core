@@ -2,6 +2,7 @@ package polkauction.core.service
 
 import polkauction.core.exception.SidecarGetException
 import polkauction.core.model.Parachain
+import polkauction.core.model.entities.LeasePeriod
 import polkauction.core.model.mapper.toLease
 import polkauction.core.model.mapper.toParachain
 import polkauction.core.model.with
@@ -18,12 +19,16 @@ class ParachainService(
     override suspend fun getAllCurrentParachains(chain: String): List<Parachain> {
         val registeredParachains = parachainRepository.getAllFor(chain.toLowerCase().capitalize())
         val sidecarClient = sidecarClientFactory.getSidecarClient(chain)
-        val leasePeriods = leasePeriodService.getAllFor(chain)
 
         return try {
             val parachains = sidecarClient.getParas().paras.map { it.toParachain() }
 
             parachains.forEach { loadLeases(sidecarClient, it) }
+
+            val allParachainsLeases = parachains.flatMap { it.currentLeases }.map { it.leaseIndexPeriod }.distinct()
+            val parachainLeasesFilter: (LeasePeriod) -> Boolean = { lp -> allParachainsLeases.any{ it == lp.period.toString() } }
+
+            val leasePeriods = leasePeriodService.getFilteredFor(chain, parachainLeasesFilter)
 
             parachains.map {
                 it.with(

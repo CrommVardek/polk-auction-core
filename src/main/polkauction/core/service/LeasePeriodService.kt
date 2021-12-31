@@ -18,11 +18,17 @@ class LeasePeriodService(
     private val sidecarClientFactory: ISidecarClientFactory
 ) : ILeasePeriodService {
     override suspend fun getAllFor(relayChain: String): ImmutableList<LeasePeriod> {
+        return getFilteredFor(relayChain) { true }
+    }
 
+    override suspend fun getFilteredFor(
+        relayChain: String,
+        filter: (LeasePeriod) -> Boolean
+    ): ImmutableList<LeasePeriod> {
         val relayChainCapitalized = relayChain.toLowerCase().capitalize()
         val sidecarClient = sidecarClientFactory.getSidecarClient(relayChain)
 
-        var leasePeriods = leasePeriodRepository.getAllFor(relayChainCapitalized)
+        var leasePeriods = leasePeriodRepository.getAllFor(relayChainCapitalized).filter(filter)
         val blockHead = sidecarClient.getBlockHead()
         coroutineScope {
             leasePeriods = leasePeriods.map {

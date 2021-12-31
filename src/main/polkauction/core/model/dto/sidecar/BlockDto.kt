@@ -9,15 +9,15 @@ data class BlockDto(val number: Number, val extrinsics: List<ExtrinsicDto>)
 
 @Serializable
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class ExtrinsicDto(val method: MethodDto)
+data class ExtrinsicDto(val method: MethodDto, val args: ArgsDto?)
 
 @Serializable
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class MethodDto(val pallet: String, val args: ArgsDto?)
+data class MethodDto(val pallet: String)
 
 @Serializable
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class ArgsDto(val now: Number?)
+data class ArgsDto(val now: String?)
 
 fun BlockDto.getTimeStamp() =
-    this.extrinsics.find { e -> e.method.pallet == "timestamp" }?.method?.args?.now?.toLong()
+    this.extrinsics.find { e -> e.method.pallet == "timestamp" }?.args?.now?.toLong()
