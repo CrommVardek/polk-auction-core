@@ -15,7 +15,7 @@ import kotlin.math.abs
 
 class LeasePeriodService(
     private val leasePeriodRepository: ILeasePeriodRepository,
-    val sidecarClientFactory: ISidecarClientFactory
+    private val sidecarClientFactory: ISidecarClientFactory
 ) : ILeasePeriodService {
     override suspend fun getAllFor(relayChain: String): ImmutableList<LeasePeriod> {
 
