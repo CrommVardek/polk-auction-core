@@ -1,6 +1,7 @@
 package polkauction.core.service
 
 import polkauction.core.model.Auction
+import polkauction.core.model.entities.LeasePeriod
 import polkauction.core.model.mapper.toAuction
 import polkauction.core.model.with
 import polkauction.core.repository.IParachainRepository
@@ -17,7 +18,8 @@ class AuctionService(
         val sidecarClient = sidecarClientFactory.getSidecarClient(chain)
         var auctionRaw = sidecarClient.getAuction()
         auctionRaw.winning = auctionRaw.winning?.filter { it.bid != null }
-        val leasePeriods = leasePeriodService.getAllFor(chain)
+        val auctionLeasePeriodFilter: (LeasePeriod) -> Boolean = { lp -> auctionRaw.leasePeriods?.any{it == lp.period.toString() }?: false}
+        val leasePeriods = leasePeriodService.getFilteredFor(chain, auctionLeasePeriodFilter)
         //val metadata = sidecarClient.getMetadata()
         //val slotsPallet = metadata.metadata.v14.pallets.single { it.name == "Slots" }
         //val leaseOffset = slotsPallet.constants.single { it.name == "leaseOffset"}

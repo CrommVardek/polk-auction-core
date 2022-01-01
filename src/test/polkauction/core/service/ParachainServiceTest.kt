@@ -53,7 +53,7 @@ class ParachainServiceTest {
         every { sidecarClientFactory.getSidecarClient(relayChain) } returns sidecarClient
         coEvery { sidecarClient.getParas() } returns onChainParachains
         coEvery { sidecarClient.getParaLeaseInfo(any()) } returns ParasLeaseInfoDto(at, "Parachain")
-        coEvery { leasePeriodService.getAllFor(relayChain) } returns ImmutableList.of()
+        coEvery { leasePeriodService.getFilteredFor(relayChain, any()) } returns ImmutableList.of()
 
         val parachainService = ParachainService(parachainRepository, sidecarClientFactory, leasePeriodService)
 
@@ -87,7 +87,7 @@ class ParachainServiceTest {
         every { sidecarClientFactory.getSidecarClient(relayChain) } returns sidecarClient
         coEvery { sidecarClient.getParas() } returns onChainParachains
         coEvery { sidecarClient.getParaLeaseInfo(any()) } returns ParasLeaseInfoDto(at, "Parachain")
-        coEvery { leasePeriodService.getAllFor(relayChain) } returns ImmutableList.of()
+        coEvery { leasePeriodService.getFilteredFor(relayChain, any()) } returns ImmutableList.of()
 
         val parachainService = ParachainService(parachainRepository, sidecarClientFactory, leasePeriodService)
 

@@ -14,6 +14,6 @@ data class Auction(
 )
 
 fun Auction.with(parachains: List<Parachain>, leasePeriods: List<LeasePeriod>) =
-    Auction(beginEnd, finishEnd, phase, auctionIndex, leasePeriodIndexes,
-        currentWinning.map { it.with(parachains.singleOrNull { parachain -> parachain.parachainId == it.bid?.parachainId }) },
-        leasePeriods.filter { lp -> leasePeriodIndexes?.find { lp.period == it } != null })
+    this.copy(
+        currentWinning = this.currentWinning.map { it.with(parachains.singleOrNull { parachain -> parachain.parachainId == it.bid?.parachainId }) },
+        leasePeriods = leasePeriods.filter { lp -> leasePeriodIndexes?.find { lp.period == it } != null }.sortedBy { it.period })
