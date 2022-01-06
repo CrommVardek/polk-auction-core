@@ -66,6 +66,6 @@ class LeasePeriodService(
         blockHead: BlockDto
     ): Long? {
         val heightDifference = abs(blockHeight - blockHead.number.toInt())
-        return blockHead.getTimeStamp()?.plus(heightDifference * (EXPECTED_BLOCK_TIME_MS / 1000))
+        return blockHead.getTimeStamp()?.plus(heightDifference * (EXPECTED_BLOCK_TIME_MS))
     }
 }

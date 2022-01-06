@@ -163,7 +163,7 @@ private fun insertParachains() = transaction {
         polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fwss.moonriver.moonbeam.network#/explorer"
     }
     ParachainEntity.new {
-        parachainId = 2077
+        parachainId = 2048
         parachainName = "Robonomics"
         relayChain = kusamaRelayChain
         website = "https://robonomics.network/"
@@ -212,7 +212,7 @@ private fun insertParachains() = transaction {
         polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Ffullnode.altair.centrifuge.io#/explorer"
     }
     ParachainEntity.new {
-        parachainId = 2089
+        parachainId = 2024
         parachainName = "Genshiro"
         relayChain = kusamaRelayChain
         website = "https://genshiro.equilibrium.io/"
