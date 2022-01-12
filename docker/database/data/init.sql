@@ -6,4 +6,6 @@ DROP TABLE IF EXISTS RelayChains;
 
 DROP TABLE IF EXISTS Parachains;
 
+DROP TABLE IF EXISTS LeasePeriods;
+
 COMMIT;

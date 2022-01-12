@@ -11,5 +11,5 @@ object EcoSystemConstants {
     const val POLKADOT_LEASE_PERIOD = 1209600
     const val POLKADOT_LEASE_OFFSET = 921600
 
-    const val EXPECTED_BLOCK_TIME_MS = 6000
+    const val EXPECTED_BLOCK_TIME_MS = 6000L
 }

@@ -53,8 +53,8 @@ class LeasePeriodService(
             getEstimatedTimeStampFromHead(it.blockNumberStart, blockHead)
         }
         var endTimeStamp: Long? = if (it.blockNumberEnd <= blockHead.number.toInt()) {
-            var blockStart = sidecarClient.getBlockAt(it.blockNumberEnd)
-            blockStart.getTimeStamp()
+            var blockEnd = sidecarClient.getBlockAt(it.blockNumberEnd)
+            blockEnd.getTimeStamp()
         } else {
             getEstimatedTimeStampFromHead(it.blockNumberEnd, blockHead)
         }
@@ -65,7 +65,7 @@ class LeasePeriodService(
         blockHeight: Int,
         blockHead: BlockDto
     ): Long? {
-        val heightDifference = abs(blockHeight - blockHead.number.toInt())
+        val heightDifference = abs(blockHeight - blockHead.number.toInt()).toLong()
         return blockHead.getTimeStamp()?.plus(heightDifference * (EXPECTED_BLOCK_TIME_MS))
     }
 }

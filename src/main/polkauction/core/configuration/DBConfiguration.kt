@@ -441,8 +441,8 @@ private fun insertLeasePeriods() {
         LeasePeriodEntity.new {
             period = i
             relayChain = kusamaRelayChain
-            blockStart = (i-1)*KUSAMA_LEASE_PERIOD + KUSAMA_LEASE_OFFSET
-            blockEnd = i*KUSAMA_LEASE_PERIOD + KUSAMA_LEASE_OFFSET
+            blockStart = i*KUSAMA_LEASE_PERIOD + KUSAMA_LEASE_OFFSET
+            blockEnd = (i+1)*KUSAMA_LEASE_PERIOD + KUSAMA_LEASE_OFFSET
         }
     }
 
@@ -452,8 +452,8 @@ private fun insertLeasePeriods() {
         LeasePeriodEntity.new {
             period = i
             relayChain = polkadotRelayChain
-            blockStart = (i-1) * POLKADOT_LEASE_PERIOD + POLKADOT_LEASE_OFFSET
-            blockEnd = i*POLKADOT_LEASE_PERIOD + POLKADOT_LEASE_OFFSET
+            blockStart = ((i) * POLKADOT_LEASE_PERIOD) + POLKADOT_LEASE_OFFSET
+            blockEnd = ((i+1)*POLKADOT_LEASE_PERIOD) + POLKADOT_LEASE_OFFSET
         }
     }
 }

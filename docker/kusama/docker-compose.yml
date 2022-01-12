@@ -13,6 +13,7 @@ services:
     sidecar:
         image: parity/substrate-api-sidecar:latest
         container_name: kusama-sidecar
+        read_only: true
         ports:
             - "127.0.1.10:8080:8080"
         networks:
