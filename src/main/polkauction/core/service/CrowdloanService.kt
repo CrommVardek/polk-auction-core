@@ -1,6 +1,7 @@
 package polkauction.core.service
 
 import polkauction.core.model.Crowdloan
+import polkauction.core.model.entities.LeasePeriod
 import polkauction.core.model.mapper.toCrowdloan
 import polkauction.core.model.with
 import polkauction.core.repository.IParachainRepository
@@ -14,8 +15,10 @@ class CrowdloanService(
     override suspend fun getCurrentCrowdloan(chain: String): Crowdloan {
         val relayChainCapitalized = chain.toLowerCase().capitalize()
         val sidecarClient = sidecarClientFactory.getSidecarClient(chain)
+        val crowdloan = sidecarClient.getCrowdloan()
         val parachainsEntities = parachainRepository.getAllFor(relayChainCapitalized)
-        val leasePeriods = leasePeriodService.getAllFor(chain)
-        return sidecarClient.getCrowdloan().toCrowdloan().with(parachainsEntities, leasePeriods)
+        val filter: (LeasePeriod) -> Boolean = { lp -> lp.period >= crowdloan.funds.map { f -> f.fundInfo.firstPeriod.toInt() }.minOrNull()!! && lp.period <= crowdloan.funds.map { f -> f.fundInfo.firstPeriod.toInt() }.maxOrNull()!! }
+        val leasePeriods = leasePeriodService.getFilteredFor(chain, filter)
+        return crowdloan.toCrowdloan().with(parachainsEntities, leasePeriods)
     }
 }
