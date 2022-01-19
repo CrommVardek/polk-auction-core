@@ -2,8 +2,7 @@ package polkauction.core.service
 
 import polkauction.core.exception.SidecarGetException
 import polkauction.core.model.Parachain
-import polkauction.core.model.entities.AcceptLeasePeriodsFrom
-import polkauction.core.model.entities.LeasePeriod
+import polkauction.core.model.entities.acceptLeasePeriodsFrom
 import polkauction.core.model.mapper.toLease
 import polkauction.core.model.mapper.toParachain
 import polkauction.core.model.with
@@ -28,7 +27,7 @@ class ParachainService(
 
             val allParachainsLeases = parachains.flatMap { it.currentLeases }.map { it.leaseIndexPeriod }.distinct()
 
-            val leasePeriods = leasePeriodService.getFilteredFor(chain, AcceptLeasePeriodsFrom(allParachainsLeases))
+            val leasePeriods = leasePeriodService.getFilteredFor(chain, acceptLeasePeriodsFrom(allParachainsLeases))
 
             parachains.map {
                 it.with(
@@ -46,7 +45,7 @@ class ParachainService(
         val sidecarClient = sidecarClientFactory.getSidecarClient(chain.toLowerCase().capitalize())
         val parachains = sidecarClient.getParas().paras.map { it.toParachain() }
         val allParachainsLeases = parachains.flatMap { it.currentLeases }.map { it.leaseIndexPeriod }.distinct()
-        val leasePeriods = leasePeriodService.getFilteredFor(chain, AcceptLeasePeriodsFrom(allParachainsLeases))
+        val leasePeriods = leasePeriodService.getFilteredFor(chain, acceptLeasePeriodsFrom(allParachainsLeases))
 
         return try {
             val parachain = parachains.singleOrNull { it.parachainId.toInt() == id }

@@ -274,6 +274,13 @@ private fun insertParachains() = transaction {
         website = "https://kylin.network/"
         polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fkusama.kylin-node.co.uk#/explorer"
     }
+    ParachainEntity.new {
+        parachainId = 2105
+        parachainName = "Darwinia Crab"
+        relayChain = kusamaRelayChain
+        website = "https://crab.network/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fcrab-parachain-rpc.darwinia.network%2F"
+    }
 
     val polkadotRelayChain = RelayChainEntity.find { RelayChains.chainName eq POLKADOT_CHAIN_NAME }.single()
 
@@ -419,16 +426,23 @@ private fun insertParachains() = transaction {
     }
     ParachainEntity.new {
         parachainId = 2034
-        parachainName = ""
+        parachainName = "HydraDX"
         relayChain = polkadotRelayChain
-        website = ""
-        polkadotJsExplorerUrl = ""
+        website = "https://hydradx.io/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Frpc-01.hydradx.io#/explorer"
     }
     ParachainEntity.new {
         parachainId = 2035
         parachainName = "Phala"
         relayChain = polkadotRelayChain
         website = "https://phala.network/en/"
+        polkadotJsExplorerUrl = ""
+    }
+    ParachainEntity.new {
+        parachainId = 2036
+        parachainName = ""
+        relayChain = polkadotRelayChain
+        website = ""
         polkadotJsExplorerUrl = ""
     }
 

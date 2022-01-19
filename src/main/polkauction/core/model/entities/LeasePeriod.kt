@@ -36,6 +36,6 @@ data class LeasePeriod(
     val endTimeStamp: Long? = null,
 )
 
-fun AcceptLeasePeriodsFrom(leasePeriodIndexes: List<String>): (leasePeriod: LeasePeriod) -> Boolean = {
+fun acceptLeasePeriodsFrom(leasePeriodIndexes: List<String>): (leasePeriod: LeasePeriod) -> Boolean = {
         leasePeriod -> leasePeriodIndexes.any{ it == leasePeriod.period.toString() }
 }
