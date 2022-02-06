@@ -114,6 +114,13 @@ private fun insertParachains() = transaction {
         polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fwss-polkasmith.polkafoundry.com#/explorer"
     }
     ParachainEntity.new {
+        parachainId = 2011
+        parachainName = "Sora Kusama"
+        relayChain = kusamaRelayChain
+        website = "https://sora.org/"
+        polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fws.parachain-collator-1.c1.sora2.soramitsu.co.jp#/explorer"
+    }
+    ParachainEntity.new {
         parachainId = 2012
         parachainName = "Crust Shadow"
         relayChain = kusamaRelayChain
@@ -281,6 +288,20 @@ private fun insertParachains() = transaction {
         website = "https://crab.network/"
         polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fcrab-parachain-rpc.darwinia.network%2F"
     }
+    ParachainEntity.new {
+        parachainId = 2106
+        parachainName = "Litmus"
+        relayChain = kusamaRelayChain
+        website = "https://www.litentry.com/"
+        polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.litmus-parachain.litentry.io#/"
+    }
+    ParachainEntity.new {
+        parachainId = 2107
+        parachainName = "Kico"
+        relayChain = kusamaRelayChain
+        website = "https://dico.io/"
+        polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.api.kico.dico.io#/explorer"
+    }
 
     val polkadotRelayChain = RelayChainEntity.find { RelayChains.chainName eq POLKADOT_CHAIN_NAME }.single()
 
@@ -436,14 +457,14 @@ private fun insertParachains() = transaction {
         parachainName = "Phala"
         relayChain = polkadotRelayChain
         website = "https://phala.network/en/"
-        polkadotJsExplorerUrl = ""
+        polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fapi.phala.network%2Fws#/explorer"
     }
     ParachainEntity.new {
         parachainId = 2036
-        parachainName = ""
+        parachainName = "Polkadex"
         relayChain = polkadotRelayChain
-        website = ""
-        polkadotJsExplorerUrl = ""
+        website = "https://www.polkadex.trade/"
+        polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmainnet.polkadex.trade%2F#/explorer"
     }
 
 }
