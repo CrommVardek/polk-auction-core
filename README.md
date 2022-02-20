@@ -39,8 +39,8 @@ In order to run Polk-auction-core, a few things need to be running before:
 
 ### Polkadot Node and sidecar API :
 
-Note: nodes that are running from a new volume will need quite some time to update the blockchain until its current head block. 
-If you wish to use the sidecar API with an up-to-date node, change the `SAS_SUBSTRATE_WS_URL` parameter in the docker-compose files ([kusama docker-compose](./docker/kusama/docker-compose.yml), [polkadot docker-compose](./docker/polkadot/docker-compose.yml)) to another node endpoint.
+Note: nodes that are running from a new volume will need quite some time to update the blockchain until its current head block. This is why public nodes are used in the configuration.
+If you wish to use the sidecar API with your own node instead, change the `SAS_SUBSTRATE_WS_URL` parameter in the docker-compose files ([kusama docker-compose](./docker/kusama/docker-compose.yml), [polkadot docker-compose](./docker/polkadot/docker-compose.yml)) to another node endpoint.
 
  - Create the volume if it does not exist already :
 
