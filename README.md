@@ -37,32 +37,58 @@ For both the issue and the PR, a context is necessary.
 
 In order to run Polk-auction-core, a few things need to be running before:
 
-### Polkadot Node and sidecar API :
-
-Note: nodes that are running from a new volume will need quite some time to update the blockchain until its current head block. This is why public nodes are used in the configuration.
-If you wish to use the sidecar API with your own node instead, change the `SAS_SUBSTRATE_WS_URL` parameter in the docker-compose files ([kusama docker-compose](./docker/kusama/docker-compose.yml), [polkadot docker-compose](./docker/polkadot/docker-compose.yml)) to another node endpoint.
-
- - Create the volume if it does not exist already :
-
-`docker volume create polkadot-node`
+### Polkadot Node and sidecar API
 
 - Create the network if it does not exist already :
 
 `docker network create polkadot`
 
+>Note: You can use the sidecar API with either your own node or with a node with a public endpoint. Nodes that are running from a new volume will need quite some time to update the blockchain until its current head block. This is why public nodes are used in the configuration.
+For testing and quick usage we recommend using the public node (see [here](#run-with-public-node-1)).
+If you wish to use the sidecar API with your own node instead, refer to [this section](#run-with-own-node-1).
+
+
+#### Run with public node
+
+- Update and run the container
+
+`docker-compose -f "docker\polkadot\docker-compose.yml" up -d --build sidecar`
+
+#### Run with own node
+
+ - Create the volume if it does not exist already :
+
+`docker volume create polkadot-node`
+
+ - Change the value of the `SAS_SUBSTRATE_WS_URL` environment variable to `ws://polkadot-node:9944` (located [here]((./docker/polkadot/docker-compose.yml)))
+
  - Update and run the containers
 
 `docker-compose -f "docker\polkadot\docker-compose.yml" up -d --build`
 
-### Kusama Node and sidecar API :
-
- - Create the volume  if it does not exist already :
-
-`docker volume create kusama-node`
+### Kusama Node and sidecar API
 
 - Create the network if it does not exist already :
 
 `docker network create kusama`
+
+>Note: You can use the sidecar API with either your own node or with a node with a public endpoint. Nodes that are running from a new volume will need quite some time to update the blockchain until its current head block. This is why public nodes are used in the configuration.
+For testing and quick usage we recommend using the public node (see [here](#run-with-public-node-2)).
+If you wish to use the sidecar API with your own node instead, refer to [this section](#run-with-own-node-2).
+
+#### Run with public node
+
+- Update and run the containers
+
+`docker-compose -f "docker\kusama\docker-compose.yml" up -d --build sidecar`
+
+#### Run with own node
+
+ - Create the volume  if it does not exist already :
+
+ `docker volume create kusama-node`
+
+ - Change the value of the `SAS_SUBSTRATE_WS_URL` environment variable to `ws://kusama-node:9944` (located [here]((./docker/kusama/docker-compose.yml)))
 
  - Update and run the containers
 
