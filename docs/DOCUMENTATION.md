@@ -2,7 +2,7 @@
 
 ### Available endpoints
 
-- (GET) `parachain\{chain}` :
+- (GET) `parachain/{chain}` :
   {chain} parameter is a valid and supported relay chain of the Polkadot EcoSystem. Currently only Polkadot and Kusama are valid parameters.
   Returns an array following the schema:
 ```
@@ -64,7 +64,7 @@
 }
 ```
 
-- (GET) `parachain\{chain}\{id}` :
+- (GET) `parachain/{chain}/{id}` :
   {chain} parameter is a valid and supported relay chain of the Polkadot EcoSystem. Currently only Polkadot and Kusama are valid parameters.
   {id} parameter is a valid existing parachainId (example within the Kusama ecosystem, 1000 is the parachain id of Statemine)
   Returns an object following the schema:
@@ -123,7 +123,7 @@
 }
 ```
 
-- (GET) `crowdloan\{chain}` :
+- (GET) `crowdloan/{chain}` :
   {chain} parameter is a valid and supported relay chain of the Polkadot EcoSystem. Currently only Polkadot and Kusama are valid parameters.
   Returns an object following the schema:
 
@@ -190,7 +190,7 @@
 }
 ```
 
-- (GET) `auction\{chain}` :
+- (GET) `auction/{chain}` :
   {chain} parameter is a valid and supported relay chain of the Polkadot EcoSystem. Currently only Polkadot and Kusama are valid parameters.
   Returns an object following the schema:
 
@@ -278,7 +278,7 @@
 }
 ```
 
-- (GET) `runtime\{chain}` :
+- (GET) `runtime/{chain}` :
   {chain} parameter is a valid and supported relay chain of the Polkadot EcoSystem. Currently only Polkadot and Kusama are valid parameters.
   Returns an object following the schema:
 

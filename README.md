@@ -52,9 +52,7 @@ If you wish to use the sidecar API with your own node instead, refer to [this se
 
 - Update and run the container
 
-    Windows: `docker-compose -f "docker\polkadot\docker-compose.yml" up -d --build sidecar`
-    
-    Linux/MacOS: `docker-compose -f "docker/polkadot/docker-compose.yml" up -d --build sidecar`
+  `docker-compose -f "docker/polkadot/docker-compose.yml" up -d --build sidecar`
 
 #### Run with own node
 
@@ -66,7 +64,7 @@ If you wish to use the sidecar API with your own node instead, refer to [this se
 
  - Update and run the containers
 
-    `docker-compose -f "docker\polkadot\docker-compose.yml" up -d --build`
+    `docker-compose -f "docker/polkadot/docker-compose.yml" up -d --build`
 
 ### Kusama Node and sidecar API
 
@@ -82,9 +80,7 @@ If you wish to use the sidecar API with your own node instead, refer to [this se
 
 - Update and run the containers
     
-    Windows: `docker-compose -f "docker\kusama\docker-compose.yml" up -d --build sidecar`
-
-    Linux/MacOS: `docker-compose -f "docker/kusama/docker-compose.yml" up -d --build sidecar`
+  `docker-compose -f "docker/kusama/docker-compose.yml" up -d --build sidecar`
 
 #### Run with own node
 
@@ -96,9 +92,7 @@ If you wish to use the sidecar API with your own node instead, refer to [this se
 
  - Update and run the containers
 
-    Windows: `docker-compose -f "docker\kusama\docker-compose.yml" up -d --build`
-    
-    Linux/MacOS: `docker-compose -f "docker/kusama/docker-compose.yml" up -d --build`
+   `docker-compose -f "docker/kusama/docker-compose.yml" up -d --build`
 
 ### Database
 
@@ -108,9 +102,7 @@ If you wish to use the sidecar API with your own node instead, refer to [this se
 
 - Update and run the containers
 
-    Windows: `docker-compose -f "docker\database\docker-compose.yml" up -d --build`
-
-    Linux/MacOS: `docker-compose -f "docker/database/docker-compose.yml" up -d --build`
+   `docker-compose -f "docker/database/docker-compose.yml" up -d --build`
 
 ## Build
 
@@ -121,9 +113,7 @@ If you wish to use the sidecar API with your own node instead, refer to [this se
 
 #### Run the image
 
-Windows: `docker-compose -f "docker\polkauction-core\docker-compose.yml" up -d --build`
-
-Linux/MacOS: `docker-compose -f "docker/polkauction-core/docker-compose.yml" up -d --build`
+`docker-compose -f "docker/polkauction-core/docker-compose.yml" up -d --build`
 
 ### Locally
 
@@ -137,7 +127,7 @@ To run the test, run the following command :
 
 ## Usage
 
-Once everything is running fine, you can access the API using the following url : http://127.0.100.1:8080 (if running locally or on docker - can be changed in the application configuration or using an environment variable)
+Once everything is running fine, you can access the API using the following url : http://127.0.100.1:8080 (if running locally or on docker - can be changed in the application configuration or using an environment variable). Refer to the documentation for the available endpoints.
 
 ### Documentation
 
