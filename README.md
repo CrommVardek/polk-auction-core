@@ -23,9 +23,9 @@ The data provided by the API are both from on-chain and off-chain.
 ### To be installed
 
  - Docker (version 19.03+)
- - Java (version 14+ recommended)
- - Kotlin (1.4+)
- - Maven (3.6+)
+ - Java (version 17+)
+ - Kotlin (1.6+)
+ - Maven (3.8+ recommended)
 
 ## Contributions, issues and PR
 

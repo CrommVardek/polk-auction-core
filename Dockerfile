@@ -1,5 +1,5 @@
 ## Part 1 : clean and package using maven
-FROM maven:3.6.3-openjdk-14
+FROM maven:3.8.4-openjdk-17
 ## download dependencies
 ADD pom.xml /
 RUN mvn verify clean
@@ -8,7 +8,7 @@ ADD . /
 RUN mvn package
 
 # Part 2: use the JAR file used in the first part and copy it across ready to RUN
-FROM openjdk:14-jdk
+FROM openjdk:17-jdk
 EXPOSE 8080:8080
 EXPOSE 3308:3308
 WORKDIR /root/
