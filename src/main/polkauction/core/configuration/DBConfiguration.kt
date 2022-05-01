@@ -302,6 +302,63 @@ private fun insertParachains() = transaction {
         website = "https://dico.io/"
         polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.api.kico.dico.io#/explorer"
     }
+    ParachainEntity.new {
+        parachainId = 2110
+        parachainName = "Mangata"
+        relayChain = kusamaRelayChain
+        website = ""
+        polkadotJsExplorerUrl = ""
+    }
+    ParachainEntity.new {
+        parachainId = 2113
+        parachainName = "Kabocha"
+        relayChain = kusamaRelayChain
+        website = "https://www.kabocha.network/"
+        polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkabocha.jelliedowl.com#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2110
+        parachainName = "Turing Network"
+        relayChain = kusamaRelayChain
+        website = "https://oak.tech/"
+        polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fturing.api.onfinality.io%2Fpublic-ws#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2115
+        parachainName = "Dora Factory"
+        relayChain = kusamaRelayChain
+        website = "https://dorafactory.org/kusama/"
+        polkadotJsExplorerUrl = ""
+    }
+    ParachainEntity.new {
+        parachainId = 2116
+        parachainName = "Tanganika"
+        relayChain = kusamaRelayChain
+        website = "https://www.datahighway.com/"
+        polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Ftanganika.datahighway.com#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2117
+        parachainName = "Listen Network"
+        relayChain = kusamaRelayChain
+        website = "https://listen.io/"
+        polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fwss.mainnet.listen.io#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2118
+        parachainName = "Bajun Network"
+        relayChain = kusamaRelayChain
+        website = "https://ajuna.io/"
+        polkadotJsExplorerUrl = ""
+    }
+    ParachainEntity.new {
+        parachainId = 2107
+        parachainName = "Shiden"
+        relayChain = kusamaRelayChain
+        website = "https://shiden.astar.network/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fshiden.api.onfinality.io%2Fpublic-ws#/explorer"
+
+    }
 
     val polkadotRelayChain = RelayChainEntity.find { RelayChains.chainName eq POLKADOT_CHAIN_NAME }.single()
 
@@ -346,6 +403,13 @@ private fun insertParachains() = transaction {
         relayChain = polkadotRelayChain
         website = "https://astar.network/"
         polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Frpc.astar.network#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2007
+        parachainName = "Kapex"
+        relayChain = polkadotRelayChain
+        website = "https://totemaccounting.com/"
+        polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fk-ui.kapex.network#/explorer"
     }
     ParachainEntity.new {
         parachainId = 2008
@@ -432,6 +496,13 @@ private fun insertParachains() = transaction {
         polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fwss.odyssey.aresprotocol.io#/"
     }
     ParachainEntity.new {
+        parachainId = 2030
+        parachainName = "Bifrost"
+        relayChain = polkadotRelayChain
+        website = "https://bifrost.finance/"
+        polkadotJsExplorerUrl = ""
+    }
+    ParachainEntity.new {
         parachainId = 2031
         parachainName = "Centrifuge"
         relayChain = polkadotRelayChain
@@ -460,11 +531,32 @@ private fun insertParachains() = transaction {
         polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fapi.phala.network%2Fws#/explorer"
     }
     ParachainEntity.new {
-        parachainId = 2036
+        parachainId = 2037
+        parachainName = "Unique Network"
+        relayChain = polkadotRelayChain
+        website = "https://unique.network/"
+        polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fws.unique.network%2F"
+    }
+    ParachainEntity.new {
+        parachainId = 2038
+        parachainName = "Geminis"
+        relayChain = polkadotRelayChain
+        website = "https://geminis.network/"
+        polkadotJsExplorerUrl = ""
+    }
+    ParachainEntity.new {
+        parachainId = 2040
         parachainName = "Polkadex"
         relayChain = polkadotRelayChain
         website = "https://www.polkadex.trade/"
         polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmainnet.polkadex.trade%2F#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2043
+        parachainName = "OriginTrail Parachain"
+        relayChain = polkadotRelayChain
+        website = "https://parachain.origintrail.io/"
+        polkadotJsExplorerUrl = ""
     }
 
 }
@@ -472,7 +564,7 @@ private fun insertParachains() = transaction {
 private fun insertLeasePeriods() {
     val kusamaRelayChain = RelayChainEntity.find { RelayChains.chainName eq KUSAMA_CHAIN_NAME }.single()
 
-    for(i in 1..100) {
+    for(i in 1..150) {
         LeasePeriodEntity.new {
             period = i
             relayChain = kusamaRelayChain
@@ -483,7 +575,7 @@ private fun insertLeasePeriods() {
 
     val polkadotRelayChain = RelayChainEntity.find { RelayChains.chainName eq POLKADOT_CHAIN_NAME }.single()
 
-    for(i in 1..50) {
+    for(i in 1..75) {
         LeasePeriodEntity.new {
             period = i
             relayChain = polkadotRelayChain
