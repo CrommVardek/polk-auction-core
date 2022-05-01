@@ -317,7 +317,7 @@ private fun insertParachains() = transaction {
         polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkabocha.jelliedowl.com#/explorer"
     }
     ParachainEntity.new {
-        parachainId = 2110
+        parachainId = 2114
         parachainName = "Turing Network"
         relayChain = kusamaRelayChain
         website = "https://oak.tech/"
@@ -352,7 +352,7 @@ private fun insertParachains() = transaction {
         polkadotJsExplorerUrl = ""
     }
     ParachainEntity.new {
-        parachainId = 2107
+        parachainId = 2120
         parachainName = "Shiden"
         relayChain = kusamaRelayChain
         website = "https://shiden.astar.network/"
