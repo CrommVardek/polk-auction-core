@@ -13,7 +13,7 @@ data class FundInfo(
     val firstPeriodStartTimeStamp: Long? = null,
     val lastPeriod: String,
     val lastPeriodEndTimeStamp: Long? = null,
-    val trieIndex: String,
+    val trieIndex: String?,
     val state: FundState
 )
 
