@@ -38,7 +38,7 @@ class SidecarClient(private val chain: String) : ISidecarClient {
     private lateinit var baseUrl: String
 
     init{
-        if(ACCEPTED_CHAINS.map{it.toUpperCase()} .indexOf(chain.toUpperCase()) < 0)
+        if(ACCEPTED_CHAINS.map{it.uppercase()} .indexOf(chain.uppercase()) < 0)
             throw NoSuchChainException("The chain $chain is not supported.")
         getBaseUrlFromProperties()
     }
@@ -56,7 +56,7 @@ class SidecarClient(private val chain: String) : ISidecarClient {
             throw FileNotFoundException("property file '$propFileName' not found in the classpath")
         }
 
-        baseUrl = props.getProperty("${chain.toLowerCase()}.baseurl")
+        baseUrl = props.getProperty("${chain.lowercase()}.baseurl")
     }
 
     private val client = HttpClient(CIO) {

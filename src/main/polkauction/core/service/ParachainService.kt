@@ -17,7 +17,7 @@ class ParachainService(
 ) : IParachainService {
 
     override suspend fun getAllCurrentParachains(chain: String): List<Parachain> {
-        val registeredParachains = parachainRepository.getAllFor(chain.toLowerCase().capitalize())
+        val registeredParachains = parachainRepository.getAllFor(chain.lowercase().capitalize())
         val sidecarClient = sidecarClientFactory.getSidecarClient(chain)
 
         return try {
@@ -41,8 +41,8 @@ class ParachainService(
     }
 
     override suspend fun getParachain(chain: String, id: Int): Parachain? {
-        val registeredParachain = parachainRepository.getByIdFor(id, chain.toLowerCase().capitalize())
-        val sidecarClient = sidecarClientFactory.getSidecarClient(chain.toLowerCase().capitalize())
+        val registeredParachain = parachainRepository.getByIdFor(id, chain.lowercase().capitalize())
+        val sidecarClient = sidecarClientFactory.getSidecarClient(chain.lowercase().capitalize())
         val parachains = sidecarClient.getParas().paras.map { it.toParachain() }
         val allParachainsLeases = parachains.flatMap { it.currentLeases }.map { it.leaseIndexPeriod }.distinct()
         val leasePeriods = leasePeriodService.getFilteredFor(chain, acceptLeasePeriodsFrom(allParachainsLeases))

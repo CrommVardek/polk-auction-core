@@ -13,7 +13,7 @@ class CrowdloanService(
     private val sidecarClientFactory: ISidecarClientFactory
 ) : ICrowdloanService {
     override suspend fun getCurrentCrowdloan(chain: String): Crowdloan {
-        val relayChainCapitalized = chain.toLowerCase().capitalize()
+        val relayChainCapitalized = chain.lowercase().capitalize()
         val sidecarClient = sidecarClientFactory.getSidecarClient(chain)
         val crowdloan = sidecarClient.getCrowdloan()
         val parachainsEntities = parachainRepository.getAllFor(relayChainCapitalized)

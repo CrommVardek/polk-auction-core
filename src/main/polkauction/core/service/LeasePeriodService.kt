@@ -25,7 +25,7 @@ class LeasePeriodService(
         relayChain: String,
         filter: (LeasePeriod) -> Boolean
     ): ImmutableList<LeasePeriod> {
-        val relayChainCapitalized = relayChain.toLowerCase().capitalize()
+        val relayChainCapitalized = relayChain.lowercase().capitalize()
         val sidecarClient = sidecarClientFactory.getSidecarClient(relayChain)
 
         var leasePeriods = leasePeriodRepository.getAllFor(relayChainCapitalized).filter(filter)

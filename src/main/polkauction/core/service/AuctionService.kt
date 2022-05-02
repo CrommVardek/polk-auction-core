@@ -14,7 +14,7 @@ class AuctionService(
 ) : IAuctionService {
 
     override suspend fun getCurrentAuction(chain: String): Auction {
-        val registeredParachains = parachainRepository.getAllFor(chain.toLowerCase().capitalize())
+        val registeredParachains = parachainRepository.getAllFor(chain.lowercase().capitalize())
         val sidecarClient = sidecarClientFactory.getSidecarClient(chain)
         var auctionRaw = sidecarClient.getAuction()
         auctionRaw.winning = auctionRaw.winning?.filter { it.bid != null }

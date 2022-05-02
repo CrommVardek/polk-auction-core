@@ -3,11 +3,12 @@ package polkauction.core.model.mapper
 import polkauction.core.model.*
 import polkauction.core.model.dto.sidecar.*
 import polkauction.core.utils.camelToUpperSnakeCase
+import java.util.*
 
 fun ParaDto.toParachain() = Parachain(
     parachainId = paraId.toLong(),
     parachainLifeCycle = ParachainLifeCycle.valueOf(paraLifecycle.camelToUpperSnakeCase()),
-    onboardingAs = valueOrDefault(OnboardingType.NOT_APPLICABLE) { OnboardingType.valueOf(onboardingAs.toUpperCase()) }
+    onboardingAs = valueOrDefault(OnboardingType.NOT_APPLICABLE) { OnboardingType.valueOf(onboardingAs.uppercase()) }
 )
 
 fun LeaseDto.toLease() = Lease(
