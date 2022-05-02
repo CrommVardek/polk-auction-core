@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>vardek</groupId>
     <artifactId>polk-auction.core</artifactId>
-    <version>0.3.0</version>
+    <version>0.3.1</version>
     <name>polk-auction.core</name>
     <description>polk-auction.core</description>
     <properties>
         <java_version>17</java_version>
-        <mockk-version>1.12.0</mockk-version>
-        <logback_version>1.2.1</logback_version>
+        <mockk-version>1.12.3</mockk-version>
+        <logback_version>1.2.11</logback_version>
         <koin_version>3.1.2</koin_version>
         <ktor_version>1.5.4</ktor_version>
         <kotlin.code.style>official</kotlin.code.style>
@@ -151,7 +151,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.7.2</version>
+            <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
