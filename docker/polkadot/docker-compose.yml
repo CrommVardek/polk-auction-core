@@ -5,9 +5,7 @@ services:
         volumes: 
             - polkadot-node:/data
         container_name: polkadot-Node
-        command: '--name "CrommVardekNode" --chain polkadot --unsafe-ws-external --pruning archive --base-path /data/polkadot --rpc-cors=all --wasm-execution Compiled'
-        ports:
-            - "127.0.0.1:30333:30333"
+        command: '--name "PolkAuctionNode" --chain polkadot --unsafe-ws-external --pruning archive --base-path /data/polkadot --rpc-cors=all --wasm-execution Compiled'
         networks:
             - polkadot
     sidecar:
