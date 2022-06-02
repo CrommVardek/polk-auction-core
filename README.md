@@ -104,6 +104,12 @@ If you wish to use the sidecar API with your own node instead, refer to [this se
 
    `docker-compose -f "docker/database/docker-compose.yml" up -d --build`
 
+### SSL Configuration
+
+Before running locally, you will need to generate an SSL certificate. With the current configuration you can run the following command to generate a self-signed certificate :
+
+`keytool -keystore keystore.jks -alias polkauctionStore -keypass foobar -storepass foobar -genkeypair -keyalg RSA -keysize 4096 -validity 36500 -dname 'CN=localhost, OU=ktor, O=ktor, L=Unspecified, ST=Unspecified, C=US'`
+
 ## Build
 
 ### With Docker

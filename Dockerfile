@@ -11,7 +11,9 @@ RUN mvn package
 FROM openjdk:17-jdk
 EXPOSE 8080:8080
 EXPOSE 3308:3308
+EXPOSE 8443:8443
 WORKDIR /root/
+RUN keytool -keystore keystore.jks -alias polkauctionStore -keypass foobar -storepass foobar -genkeypair -keyalg RSA -keysize 4096 -validity 36500 -dname 'CN=localhost, OU=ktor, O=ktor, L=Unspecified, ST=Unspecified, C=US'
 ## COPY packaged JAR file and rename as app.jar
 ## → this relies on your MAVEN package command building a jar
 ## that matches *-jar-with-dependencies.jar with a single match

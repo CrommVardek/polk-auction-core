@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>vardek</groupId>
     <artifactId>polk-auction.core</artifactId>
-    <version>0.3.1</version>
+    <version>0.3.2</version>
     <name>polk-auction.core</name>
     <description>polk-auction.core</description>
     <properties>
@@ -87,6 +87,11 @@
         <dependency>
             <groupId>io.ktor</groupId>
             <artifactId>ktor-client-jackson</artifactId>
+            <version>${ktor_version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.ktor</groupId>
+            <artifactId>ktor-network-tls-certificates</artifactId>
             <version>${ktor_version}</version>
         </dependency>
         <dependency>

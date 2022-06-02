@@ -28,14 +28,14 @@ fun Application.module(testing: Boolean = false) {
     }
 
     install(DefaultHeaders) {
-        header("X-Engine", "Ktor") // will send this header with each response
+
     }
 
     install(ContentNegotiation) {
         jackson()
     }
 
-    install(Koin){
+    install(Koin) {
         modules(polkAuctionCoreModule)
     }
 
@@ -45,6 +45,5 @@ fun Application.module(testing: Boolean = false) {
     registerAuctionRoutes()
     registerCrowdloanRoutes()
     registerRuntimeRoutes()
-
 }
 
