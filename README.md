@@ -133,7 +133,7 @@ To run the test, run the following command :
 
 ## Usage
 
-Once everything is running fine, you can access the API using the following url : http://127.0.100.1:8080 (if running locally or on docker - can be changed in the application configuration or using an environment variable). Refer to the documentation for the available endpoints.
+Once everything is running fine, you can access the API using the following url : http://localhost:8080 (if running locally or on docker - can be changed in the application configuration or using an environment variable). Refer to the documentation for the available endpoints.
 
 ### Documentation
 
