@@ -23,4 +23,4 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Install with Maven
-        run: mvn clean install -e
+        run: mvn -B package
