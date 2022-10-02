@@ -275,7 +275,14 @@ private fun insertPolkadotParachains() = transaction {
         parachainName = "OriginTrail Parachain"
         relayChain = polkadotRelayChain
         website = "https://parachain.origintrail.io/"
-        polkadotJsExplorerUrl = ""
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fparachain-rpc.origin-trail.network#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2046
+        parachainName = "Darwinia"
+        relayChain = polkadotRelayChain
+        website = "https://darwinia.network/"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fparachain-rpc.darwinia.network#/explorer"
     }
 }
 
@@ -621,6 +628,27 @@ private fun insertKusamaParachains() = transaction {
         relayChain = kusamaRelayChain
         website = "https://www.imbue.network/"
         polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fimbue-kusama.imbue.network#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2123
+        parachainName = "GM Parachain"
+        relayChain = kusamaRelayChain
+        website = "https://www.gmordie.com/"
+        polkadotJsExplorerUrl = ""
+    }
+    ParachainEntity.new {
+        parachainId = 2124
+        parachainName = "Amplitude"
+        relayChain = kusamaRelayChain
+        website = "https://pendulumchain.org/amplitude"
+        polkadotJsExplorerUrl = ""
+    }
+    ParachainEntity.new {
+        parachainId = 2125
+        parachainName = "InvArch Tinkernet"
+        relayChain = kusamaRelayChain
+        website = "https://invarch.network/tinkernet"
+        polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Ftinker.invarch.network#/explorer"
     }
 }
 
