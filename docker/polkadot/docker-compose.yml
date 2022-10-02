@@ -17,7 +17,7 @@ services:
         networks:
             - polkadot
         environment:
-            SAS_SUBSTRATE_WS_URL: wss://rpc.polkadot.io
+            SAS_SUBSTRATE_URL: wss://rpc.polkadot.io
 
 volumes:
   polkadot-node:
