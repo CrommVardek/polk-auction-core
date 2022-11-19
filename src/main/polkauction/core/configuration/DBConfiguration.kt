@@ -264,6 +264,13 @@ private fun insertPolkadotParachains() = transaction {
         polkadotJsExplorerUrl = ""
     }
     ParachainEntity.new {
+        parachainId = 2039
+        parachainName = "Integritee Shell"
+        relayChain = polkadotRelayChain
+        website = "https://integritee.network/"
+        polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fpolkadot.api.integritee.network"
+    }
+    ParachainEntity.new {
         parachainId = 2040
         parachainName = "Polkadex"
         relayChain = polkadotRelayChain
@@ -283,6 +290,19 @@ private fun insertPolkadotParachains() = transaction {
         relayChain = polkadotRelayChain
         website = "https://darwinia.network/"
         polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Fparachain-rpc.darwinia.network#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2052
+        parachainName = "Kylin"
+        relayChain = polkadotRelayChain
+        website = "https://www.kylin.network/"
+        polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fpolkadot.kylin-node.co.uk"
+    }
+    ParachainEntity.new {
+        parachainId = 2056
+        parachainName = "Aventus"
+        relayChain = polkadotRelayChain
+        website = "https://www.aventus.io/"
     }
 }
 
@@ -649,6 +669,20 @@ private fun insertKusamaParachains() = transaction {
         relayChain = kusamaRelayChain
         website = "https://invarch.network/tinkernet"
         polkadotJsExplorerUrl = "https://cloudflare-ipfs.com/ipns/dotapps.io/?rpc=wss%3A%2F%2Ftinker.invarch.network#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2129
+        parachainName = "SNOW Network"
+        relayChain = kusamaRelayChain
+        website = "https://icenetwork.io/snow/"
+        polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fsnow-rpc.icenetwork.io#/explorer"
+    }
+    ParachainEntity.new {
+        parachainId = 2222
+        parachainName = "DAO IPCI"
+        relayChain = kusamaRelayChain
+        website = "https://ipci.io/"
+        polkadotJsExplorerUrl = "https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fkusama.rpc.ipci.io#/explorer"
     }
 }
 
